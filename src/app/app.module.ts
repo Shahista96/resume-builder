@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,12 +18,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { HeaderComponent } from './components/header/header.component';
+import { PDFComponent } from './components/pdf/pdf.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonalDetailsComponent,
-    HeaderComponent
+    HeaderComponent,
+    PDFComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { HeaderComponent } from './components/header/header.component';
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

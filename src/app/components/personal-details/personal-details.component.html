@@ -1,36 +1,37 @@
 <div class="no-style" style="margin-left: 4px">
-    <div class="container">
-        <h2>Add Personal Details</h2>
-        <form>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required>
-          </div>
-  
-          <div class="form-group">
-            <label for="qualification">Qualification</label>
-            <input type="text" class="form-control" id="qualification">
-          </div>
+  <div class="container">
+    <h2>Add Personal Details</h2>
+    <form #personalDetails="ngForm" (ngSubmit)="submit(personalDetails)">
+      <div class="form-group" style="padding-bottom: 35px;">
+        <label for="qualification" style="display:block">Name</label>
+        <input type="text" placeholder="First Name" class="form-control" style="width:49%; display: inline; float:left;" name="fname" ngModel>
+        <input type="text" placeholder="Last Name" class="form-control" style="width:49%; display:inline; float:right;" name="lname" ngModel>
+      </div>
 
-          <div class="form-group">
-            <label for="Email">Email</label>
-            <input type="text" class="form-control" id="email">
-          </div>
+      <div class="form-group">
+        <label for="qualification">Qualification</label>
+        <input type="text" placeholder="Highest Qualification/Degree" class="form-control" name="qualification" ngModel>
+      </div>
 
-          <div class="form-group">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber">
-          </div>
+      <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="text" placeholder="Email-id" class="form-control" name="email" ngModel>
+      </div>
 
-          <div class="form-group">
-            <label for="linkedIn">LinkedIn URL</label>
-            <input type="text" class="form-control" id="linkedIn">
-          </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" placeholder="Contact Number" class="form-control" name="phoneNumber" ngModel>
+      </div>
 
-          <i class="fa fa-arrow-circle-left fa-2x"></i> 
-          <button type="submit" class="btn btn-success">Save</button>
-          <button  class="btn btn-warning">Skip</button>
-          <i class="fa fa-arrow-circle-right fa-2x"></i> 
-  
-        </form>
-    </div>
+      <div class="form-group">
+        <label for="linkedIn">LinkedIn URL</label>
+        <input type="text" placeholder="LinkedIn URL" class="form-control" name="linkedIn" ngModel>
+      </div>
+
+      <i class="fa fa-arrow-circle-left fa-2x"></i>
+      <button type="submit" class="btn btn-success">Save</button>
+      <button class="btn btn-warning">Skip</button>
+      <i class="fa fa-arrow-circle-right fa-2x"></i>
+
+    </form>
+  </div>

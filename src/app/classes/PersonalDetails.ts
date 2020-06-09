@@ -1,6 +1,7 @@
 export class PersonalDetails{
 
-    name: string;
+    fname: string;
+    lname: string;
     qualification: string;
     email: string;
     phoneNumber: string;
