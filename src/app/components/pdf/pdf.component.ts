@@ -44,17 +44,20 @@ export class PDFComponent implements OnInit {
   addPersonalDetailsToPDF(){
     this.documentDefinition.content.push(
       {
-        text: this.personalDetails.fname + ' ' + this.personalDetails.lname + '\n\n',
+        text: this.personalDetails.fname + ' ' + this.personalDetails.lname + '\n',
         style: 'header'
       });
+      // tslint:disable-next-line: align
       this.documentDefinition.content.push(
         [
          this.personalDetails.qualification,
          this.personalDetails.email,
          this.personalDetails.phoneNumber,
-         this.personalDetails.linkedIn
+         this.personalDetails.linkedIn,
+         '\n',
+         {canvas: [ { type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 } ]},
         ]
-      )
+      );
 
   }
 
