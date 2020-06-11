@@ -36,11 +36,6 @@ export class PDFComponent implements OnInit {
 
   }
 
-  // generateDocumentDefinition1(){
-  //   const documentDefinition = { content: 'This is for testing.' };
-  //   return documentDefinition;
-  // }
-
   addPersonalDetailsToPDF(){
     this.documentDefinition.content.push(
       {
