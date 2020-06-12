@@ -14,6 +14,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class PDFComponent implements OnInit {
 
 
+  details: string[];
+
   personalDetails: PersonalDetails;
   qualifications: QualificationDetails[];
   workExperience: WorkExperience[];
@@ -28,41 +30,81 @@ export class PDFComponent implements OnInit {
     this.personalDetails.qualification = 'Bachelor of Engineering, Information Technology';
     this.personalDetails.email = 'patelshahista96@gmail.com';
     this.personalDetails.phoneNumber = '+91 7391071076';
-    this.personalDetails.linkedIn = '../shahistapatel0108/';
+    this.personalDetails.linkedIn = 'https://www.linkedin.com/in/shahista-patel-0108';
 
     this.initializeDocumentDefinition();
     this.addPersonalDetailsToPDF();
+    this.getEducationalDetailsMocked();
+    console.log("Qualifications ", this.qualifications);
+    this.addQualificationDetailsToPDF();
+    //this.pushDetailsDynamicallyTest();
+    //this.columnPDFSample();
     this.generatePdf();
 
   }
 
-  addPersonalDetailsToPDF(){
+  getEducationalDetailsMocked() {
+    const qualification = new QualificationDetails();
+    this.qualifications = [];
+    qualification.description = 'SSC';
+    qualification.institute = 'Priyadarshani School';
+    qualification.fromDate = '';
+    qualification.toDate = '2012';
+    qualification.grade = '91%';
+
+    
+    const qualification1 = new QualificationDetails();
+
+    qualification1.description = 'HSC';
+    qualification1.institute = 'Modern College, Pune';
+    qualification1.fromDate = '2012';
+    qualification1.toDate = '2014';
+    qualification1.grade = '75%';
+
+    
+
+    const qualification2 = new QualificationDetails();
+
+    qualification2.description = 'Bachelor of Engineering, Information Technology';
+    qualification2.institute = 'Maharashtra Institute of Technology, Alandi';
+    qualification2.fromDate = '2014';
+    qualification2.toDate = '2018';
+    qualification2.grade = '75%';
+
+    this.qualifications.push(qualification2);
+    this.qualifications.push(qualification1);
+    this.qualifications.push(qualification);
+
+  }
+
+  addPersonalDetailsToPDF() {
     this.documentDefinition.content.push(
       {
         text: this.personalDetails.fname + ' ' + this.personalDetails.lname + '\n',
         style: 'header'
       });
-      // tslint:disable-next-line: align
-      this.documentDefinition.content.push(
-        [
-         this.personalDetails.qualification,
-         this.personalDetails.email,
-         this.personalDetails.phoneNumber,
-         this.personalDetails.linkedIn,
-         '\n',
-         {canvas: [ { type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 } ]},
-        ]
-      );
+    // tslint:disable-next-line: align
+    this.documentDefinition.content.push(
+      [
+        this.personalDetails.qualification,
+        this.personalDetails.email,
+        this.personalDetails.phoneNumber,
+        this.personalDetails.linkedIn,
+        '\n',
+        { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] },
+        '\n'
+      ]
+    );
 
   }
 
-  initializeDocumentDefinition(){
+  initializeDocumentDefinition() {
     this.documentDefinition = {
       content: [
       ],
       styles: {
         header: {
-          fontSize: 20,
+          fontSize: 16,
           bold: true
         },
         bigger: {
@@ -73,7 +115,7 @@ export class PDFComponent implements OnInit {
     };
   }
 
-  generateDocumentDefinition11(){
+  generateDocumentDefinition11() {
     const documentDefinition = {
       content: [
         {
@@ -96,10 +138,111 @@ export class PDFComponent implements OnInit {
     return documentDefinition;
   }
 
-  generatePdf(){
-    pdfMake.createPdf(this.documentDefinition).open();
+
+
+
+
+  addQualificationDetailsToPDF() {
+
+    let count = 0;
+    this.qualifications.forEach((elem) => {
+
+        let details = [];
+        details.push(elem.description);
+        details.push(elem.institute);
+        details.push('Percentage : ' + elem.grade);
+
+        if(count == 0){
+          this.documentDefinition.content.push(
+            {
+              columns: [
+                {
+                  width: 150,
+                  text: 'Education',
+                },
+                [
+                  {
+                    text: details[0],
+                    bold: true
+                  },
+                  details[1],
+                  details[2],
+                  '\n'
+                ]
+              ]
+            }
+          );
+        }else{
+          this.documentDefinition.content.push(
+            {
+              columns: [
+                {
+                  width: 150,
+                  text: ' ',
+                },
+                [
+                  {
+                    text: details[0],
+                    bold: true
+                  },
+                  details[1],
+                  details[2],
+                  '\n'
+                ]
+              ]
+            }
+          );
+        }
+
+        count++;
+      }
+    );
+
+    this.documentDefinition.content.push(
+      [ { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
+    );
+
   }
 
+  pushDetailsDynamicallyTest() {
 
+    this.details = [];
+
+
+    this.qualifications.forEach(qualification => {
+      this.details.push(qualification.description);
+      this.details.push(qualification.institute);
+      this.details.push('Percentage : ' + qualification.grade);
+      console.log('Details are - ', this.details)
+
+      this.documentDefinition.content.push([
+        {
+          columns: [
+            {
+              width: 150,
+              text: '',
+            },
+            this.details[0],
+            this.details[1]
+          ]
+        }
+      ]);
+
+      this.details = [];
+    });
+
+
+    // this.qualifications.forEach(qualification => {
+    //   this.documentDefinition.content.columns.push(qualification.description);
+    //   this.documentDefinition.content[2].columns[2].push(qualification.institute);
+    //   this.documentDefinition.content[2].columns[2].push(qualification.description);
+    //   this.documentDefinition.content[2].columns[2].push(qualification.institute);
+    // });
+
+  }
+
+  generatePdf() {
+    pdfMake.createPdf(this.documentDefinition).open();
+  }
 
 }
