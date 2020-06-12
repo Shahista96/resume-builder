@@ -19,13 +19,15 @@ import { AppComponent } from './app.component';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PDFComponent } from './components/pdf/pdf.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonalDetailsComponent,
     HeaderComponent,
-    PDFComponent
+    PDFComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

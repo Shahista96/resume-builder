@@ -21,17 +21,17 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
     width: 100%;
   
     @media #{$mq-medium} {
-        width: 48%;
-        float:right;
+        width: 40%;
+        float:left;
     }
   
     @media #{$mq-large} {
-        width: 48%;
-        float:right;
+        width: 40%;
+        float:left;
     }
   
     @media #{$mq-xlarge} {
-        width: 48%;
-        float:right;
+        width: 40%;
+        float:left;
     }
 }
