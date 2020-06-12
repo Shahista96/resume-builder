@@ -12,4 +12,7 @@ export class SkillComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  close(){
+    //
+  }
 }

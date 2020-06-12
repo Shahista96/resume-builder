@@ -12,4 +12,8 @@ export class WorkExperienceComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  close(){
+    //
+  }
+
 }

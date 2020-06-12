@@ -12,4 +12,7 @@ export class HobbyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  close(){
+    //
+  }
 }

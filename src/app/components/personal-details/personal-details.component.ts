@@ -20,5 +20,9 @@ export class PersonalDetailsComponent implements OnInit {
   submit(personalDetails): void{
     console.log('Form Value is ', personalDetails);
   }
+  
+  close(){
+    //
+  }
 
 }

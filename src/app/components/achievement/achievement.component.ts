@@ -12,4 +12,7 @@ export class AchievementComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  close(){
+    //
+  }
 }

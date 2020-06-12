@@ -12,4 +12,7 @@ export class ExtraCurricularComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  close(){
+    //
+  }
 }

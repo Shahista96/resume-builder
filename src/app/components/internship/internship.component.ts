@@ -12,4 +12,7 @@ export class InternshipComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  close(){
+    //
+  }
 }
