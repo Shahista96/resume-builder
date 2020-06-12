@@ -10,6 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,6 +22,17 @@ import { PersonalDetailsComponent } from './components/personal-details/personal
 import { HeaderComponent } from './components/header/header.component';
 import { PDFComponent } from './components/pdf/pdf.component';
 import { HomeComponent } from './components/home/home.component';
+import { EducationComponent } from './components/education/education.component';
+import { WorkExperienceComponent } from './components/work-experience/work-experience.component';
+import { InternshipComponent } from './components/internship/internship.component';
+import { HobbyComponent } from './components/hobby/hobby.component';
+import { SkillComponent } from './components/skill/skill.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { ExtraCurricularComponent } from './components/extra-curricular/extra-curricular.component';
+import { AchievementComponent } from './components/achievement/achievement.component';
+import { TrainingComponent } from './components/training/training.component';
+import { CourseComponent } from './components/course/course.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +40,17 @@ import { HomeComponent } from './components/home/home.component';
     PersonalDetailsComponent,
     HeaderComponent,
     PDFComponent,
-    HomeComponent
+    HomeComponent,
+    EducationComponent,
+    WorkExperienceComponent,
+    InternshipComponent,
+    HobbyComponent,
+    SkillComponent,
+    ProjectsComponent,
+    ExtraCurricularComponent,
+    AchievementComponent,
+    TrainingComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +64,8 @@ import { HomeComponent } from './components/home/home.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
