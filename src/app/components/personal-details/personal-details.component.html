@@ -1,40 +1,40 @@
-<div style="margin-left: 4px">
-  <div class="container id_pd">
-    <h3>Personal Details</h3>
-    <form #personalDetails="ngForm" (ngSubmit)="submit(personalDetails)">
-      <div class="form-group" style="padding-bottom: 35px;">
-        <label for="qualification" style="display:block">Name</label>
-        <input type="text" placeholder="First Name" class="form-control" style="width:49%; display: inline; float:left;"
-          name="fname" ngModel>
-        <input type="text" placeholder="Last Name" class="form-control" style="width:49%; display:inline; float:right;"
-          name="lname" ngModel>
-      </div>
+<h2 mat-dialog-title><button mat-raised-button style="width:100%;" color="primary"><i class="material-icons">&#xe55a;</i> Personal Info </button>
+</h2>
+<form #personalDetails="ngForm" (ngSubmit)="submit(personalDetails)">
+<mat-dialog-content>
+ 
+    <div class="form-group" style="padding-bottom: 35px;">
+      <label for="qualification" style="display:block">Name</label>
+      <input type="text" placeholder="First Name" class="form-control" style="width:49%; display: inline; float:left;"
+        name="fname" ngModel>
+      <input type="text" placeholder="Last Name" class="form-control" style="width:49%; display:inline; float:right;"
+        name="lname" ngModel>
+    </div>
 
-      <div class="form-group">
-        <label for="qualification">Qualification</label>
-        <input type="text" placeholder="Highest Qualification/Degree" class="form-control" name="qualification" ngModel>
-      </div>
+    <div class="form-group">
+      <label for="qualification">Qualification</label>
+      <input type="text" placeholder="Highest Qualification/Degree" class="form-control" name="qualification" ngModel>
+    </div>
 
-      <div class="form-group">
-        <label for="Email">Email</label>
-        <input type="text" placeholder="Email-id" class="form-control" name="email" ngModel>
-      </div>
+    <div class="form-group">
+      <label for="Email">Email</label>
+      <input type="text" placeholder="Email-id" class="form-control" name="email" ngModel>
+    </div>
 
-      <div class="form-group">
-        <label for="phoneNumber">Phone Number</label>
-        <input type="text" placeholder="Contact Number" class="form-control" name="phoneNumber" ngModel>
-      </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="text" placeholder="Contact Number" class="form-control" name="phoneNumber" ngModel>
+    </div>
 
-      <div class="form-group">
-        <label for="linkedIn">LinkedIn URL</label>
-        <input type="text" placeholder="LinkedIn URL" class="form-control" name="linkedIn" ngModel>
-      </div>
+    <div class="form-group">
+      <label for="linkedIn">LinkedIn URL</label>
+      <input type="text" placeholder="LinkedIn URL" class="form-control" name="linkedIn" ngModel>
+    </div>
 
-      <!-- <i class="fa fa-arrow-circle-left fa-2x"></i> -->
-      <button type="submit" class="btn btn-success">Save</button>
-      <button class="btn btn-warning">Skip</button>
-      <!-- <i class="fa fa-arrow-circle-right fa-2x"></i> -->
+</mat-dialog-content>
 
-    </form>
-  </div>
-</div>
+<mat-dialog-actions>
+  <button mat-raised-button class="btn-success" type="submit">Save</button>
+    <button mat-raised-button class="btn-danger" (click)="close()">Close</button>
+</mat-dialog-actions>
+</form>

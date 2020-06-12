@@ -56,3 +56,38 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
     }
 
 }
+
+.id_resume_fields{
+    width: 100%;
+    float:left;
+    
+    @media #{$mq-medium} {
+        width: 35%;
+        float:left;
+    }
+  
+    @media #{$mq-large} {
+        width: 35%;
+        float:left;
+    }
+  
+    @media #{$mq-xlarge} {
+        width: 35%;
+        float:left;
+    }
+
+}
+
+.personal_info_button{
+    width: 100%;
+    float:left;
+    @media #{$mq-medium} {
+        width: 40%;
+    }
+    @media #{$mq-large} {
+        width: 40%;  
+    }
+    @media #{$mq-xlarge} {
+        width: 40%;  
+    }
+}
