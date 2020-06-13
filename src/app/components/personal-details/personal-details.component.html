@@ -1,12 +1,12 @@
 <h2 mat-dialog-title><button mat-raised-button style="width:100%;" color="primary"><i class="material-icons">&#xe55a;</i> Personal Info </button>
 </h2>
-<form #personalDetails="ngForm" (ngSubmit)="submit(personalDetails)">
+<form novalidate #personalDetails="ngForm" (ngSubmit)="submit(personalDetails)">
 <mat-dialog-content>
  
     <div class="form-group" style="padding-bottom: 35px;">
       <label for="qualification" style="display:block">Name</label>
       <input type="text" placeholder="First Name" class="form-control" style="width:49%; display: inline; float:left;"
-        name="fname" ngModel>
+        name="fname" [(ngModel)]="personalDetailsClass.fname">
       <input type="text" placeholder="Last Name" class="form-control" style="width:49%; display:inline; float:right;"
         name="lname" ngModel>
     </div>

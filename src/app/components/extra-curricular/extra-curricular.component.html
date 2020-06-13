@@ -1,15 +1,27 @@
 <h2 mat-dialog-title>
-    <button style="width:100%" mat-raised-button color="warn">
+    <button style="width:100%; padding-right:0px" mat-raised-button color="warn">
         <i style='font-size:20px' class='fas'>&#xf1e3;</i>
         Co-Curricular/Extra-Curricular Activites
+        <i class="material-icons" title="Add" (click)="addActivity()"
+    style="font-size: 36px; float:right;vertical-align:middle !important;">
+    add_box
+</i>
     </button>
+    
 </h2>
-<mat-dialog-content>
-
-
-</mat-dialog-content>
-
-<mat-dialog-actions align="end">
-    <button mat-raised-button class="btn-success">Save</button>
-    <button mat-raised-button class="btn-danger" (click)="close()">Close</button>
-</mat-dialog-actions>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-dialog-content>
+        <div class="form-group" formArrayName="activites">
+            <div class="input-group" *ngFor="let activity of form.get('activities')['controls']; let i=index;">
+                <input type="text" class="form-control" placeholder="Ex: Angular, Java, AutoCad etc.."
+                    [formControlName]="i">
+                <span title="Remove" (click)="removeActivity(i)"
+                    class="input-group-addon glyphicon glyphicon-trash"></span>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button class="btn-success">Save</button>
+        <button mat-raised-button class="btn-danger" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</form>

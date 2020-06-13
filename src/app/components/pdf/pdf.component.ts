@@ -35,7 +35,7 @@ export class PDFComponent implements OnInit {
     this.initializeDocumentDefinition();
     this.addPersonalDetailsToPDF();
     this.getEducationalDetailsMocked();
-    console.log("Qualifications ", this.qualifications);
+    console.log("degree details ", this.qualifications);
     this.addQualificationDetailsToPDF();
     //this.pushDetailsDynamicallyTest();
     //this.columnPDFSample();
@@ -46,7 +46,7 @@ export class PDFComponent implements OnInit {
   getEducationalDetailsMocked() {
     const qualification = new QualificationDetails();
     this.qualifications = [];
-    qualification.description = 'SSC';
+    qualification.degree = 'SSC';
     qualification.institute = 'Priyadarshani School';
     qualification.fromDate = '';
     qualification.toDate = '2012';
@@ -55,7 +55,7 @@ export class PDFComponent implements OnInit {
     
     const qualification1 = new QualificationDetails();
 
-    qualification1.description = 'HSC';
+    qualification1.degree = 'HSC';
     qualification1.institute = 'Modern College, Pune';
     qualification1.fromDate = '2012';
     qualification1.toDate = '2014';
@@ -65,7 +65,7 @@ export class PDFComponent implements OnInit {
 
     const qualification2 = new QualificationDetails();
 
-    qualification2.description = 'Bachelor of Engineering, Information Technology';
+    qualification2.degree = 'Bachelor of Engineering, Information Technology';
     qualification2.institute = 'Maharashtra Institute of Technology, Alandi';
     qualification2.fromDate = '2014';
     qualification2.toDate = '2018';
@@ -148,7 +148,7 @@ export class PDFComponent implements OnInit {
     this.qualifications.forEach((elem) => {
 
         let details = [];
-        details.push(elem.description);
+        details.push(elem.degree);
         details.push(elem.institute);
         details.push('Percentage : ' + elem.grade);
 
@@ -210,7 +210,7 @@ export class PDFComponent implements OnInit {
 
 
     this.qualifications.forEach(qualification => {
-      this.details.push(qualification.description);
+      this.details.push(qualification.degree);
       this.details.push(qualification.institute);
       this.details.push('Percentage : ' + qualification.grade);
       console.log('Details are - ', this.details)

@@ -32,6 +32,9 @@ import { ExtraCurricularComponent } from './components/extra-curricular/extra-cu
 import { AchievementComponent } from './components/achievement/achievement.component';
 import { TrainingComponent } from './components/training/training.component';
 import { CourseComponent } from './components/course/course.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 
 @NgModule({
@@ -65,7 +68,9 @@ import { CourseComponent } from './components/course/course.component';
     MatInputModule,
     FormsModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
