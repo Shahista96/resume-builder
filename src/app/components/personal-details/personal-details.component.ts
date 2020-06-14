@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonalDetails } from 'src/app/classes/PersonalDetails';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-personal-details',
@@ -8,22 +10,27 @@ import { PersonalDetails } from 'src/app/classes/PersonalDetails';
 })
 export class PersonalDetailsComponent implements OnInit {
 
-  personalDetailsClass: PersonalDetails = new PersonalDetails();
+  personalDetailsClass: PersonalDetails;
 
-  constructor() { }
+  constructor(private dataTransferService: DataTransferService, private matDialogRef: MatDialogRef<PersonalDetails>) { }
 
   ngOnInit(): void {
-
+    this.dataTransferService.personalInfoObserver.subscribe((data) => {
+      this.personalDetailsClass = data;
+      console.log("In Personal Details On Init - ", this.personalDetailsClass);
+    });
   }
 
   submit(personalDetails): void{
-    console.log('Form Value is ', personalDetails);
-    console.log('Personal Details are **************');
-    console.log(this.personalDetailsClass);
+    console.log('Personal Details are ', personalDetails.value);
+    this.dataTransferService.personalDetails = personalDetails.value;
+    this.dataTransferService.updatePersonalInfo(personalDetails.value);
+    this.matDialogRef.close();
+
   }
 
   close(){
-    //
+    this.matDialogRef.close();
   }
 
 }

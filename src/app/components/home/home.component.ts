@@ -26,56 +26,55 @@ export class HomeComponent implements OnInit {
 
   openPersonalDetails(){
     const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(PersonalDetailsComponent, dialogConfig);
+    this.matDialog.open(PersonalDetailsComponent, {width: '400px', minHeight: '150px'});
   }
 
   openAchievement(){
     const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(AchievementComponent, dialogConfig);
+    this.matDialog.open(AchievementComponent, {width: '400px', minHeight: '150px'});
   }
 
   openCourse(){
     const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(CourseComponent, dialogConfig);
+    this.matDialog.open(CourseComponent, {width: '400px', minHeight: '150px'});
   }
 
   openEducation(){
-    const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(EducationComponent, dialogConfig);
+    this.matDialog.open(EducationComponent, {width: '400px', minHeight: '150px'});
   }
 
   openExtraCurricular(){
-    const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(ExtraCurricularComponent, dialogConfig);
+
+    this.matDialog.open(ExtraCurricularComponent, {width: '400px', minHeight: '150px'});
   }
 
   openHobby(){
     const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(HobbyComponent, dialogConfig);
+    this.matDialog.open(HobbyComponent, {width: '400px', minHeight: '150px'});
   }
 
   openInternship(){
     const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(InternshipComponent, dialogConfig);
+    this.matDialog.open(InternshipComponent, {width: '400px', minHeight: '150px'});
   }
 
   openProjects(){
     const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(ProjectsComponent, dialogConfig);
+    this.matDialog.open(ProjectsComponent, {width: '400px', minHeight: '150px'});
   }
 
   openSkill(){
     const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(SkillComponent, dialogConfig);
+    this.matDialog.open(SkillComponent, {width: '400px', minHeight: '150px'});
   }
 
   openTraining(){
     const dialogConfig = new MatDialogConfig();
-    this.matDialog.open(TrainingComponent, dialogConfig);
+    this.matDialog.open(TrainingComponent, {width: '400px', minHeight: '150px'});
   }
 
   openWorkExperience(){
       const dialogConfig = new MatDialogConfig();
-      this.matDialog.open(WorkExperienceComponent, dialogConfig);
+      this.matDialog.open(WorkExperienceComponent, {width: '400px', minHeight: '150px'});
   }
 }

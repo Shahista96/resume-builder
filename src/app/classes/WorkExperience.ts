@@ -1,8 +1,8 @@
 export class WorkExperience{
+    designation: string; // Job Title
     organizationName: string;
     fromDate: string;
     toDate: string;
-    designation: string;
     jobDescription: string;
-    responsibility: string[];
+    responsibility: string;
 }

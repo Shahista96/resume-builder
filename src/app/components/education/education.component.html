@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>
     <button style="width: 100%;padding-right: 0px;" mat-raised-button color="accent">
-        <i style='font-size:20px' class='fas fa-graduation-cap'></i> 
+        <i style='font-size:20px' class='fas fa-graduation-cap'></i>
         Educational Details
         <i class="material-icons" title="Add" (click)="addEducation()"
             style="font-size: 36px; float:right;vertical-align:middle !important;">
@@ -11,22 +11,24 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
     <mat-dialog-content>
         <div class="form-group" formArrayName="education">
-            <div class="input-group" *ngFor="let item of form.get('education')['controls']; let i=index;">
-                <div [formGroupName]="i">
-                    <input type="text" class="form-control" placeholder="Title"
-                    formControlName="degree">
-                <input type="text" class="form-control" placeholder="Institute"
-                    formControlName="institute">
-                <input type="text" class="form-control" placeholder="Percentage/Grade/CGPA"
-                    formControlName="grade">
-                <input type="text" class="form-control" placeholder="From Date- Ex: May, 2020"
-                    formControlName="fromDate">
-                <input type="text" class="form-control" placeholder="Title"
-                    formControlName="toDate">
-                <span title="Remove" (click)="removeEducation(i)"
-                    class="input-group-addon glyphicon glyphicon-trash"></span>
+            <div class="input-group" *ngFor="let item of form.get('education')['controls']; let i=index;" style="margin-bottom: 20px;">
+                
+                <div [formGroupName]="i" style="margin-bottom: 20px;">
+                    <div class="input-group" style="width: 100%;">
+                        <input type="text" class="form-control" placeholder="Title" formControlName="degree">
+                        <span title="Remove" (click)="removeEducation(i)"
+                            class="input-group-addon glyphicon glyphicon-trash"></span>
+                    </div>
+                    <!-- <input type="text" class="form-control" placeholder="Title"
+                    formControlName="degree"> -->
+                    <input type="text" class="form-control" placeholder="Institute" formControlName="institute">
+                    <input type="text" class="form-control" placeholder="Percentage/Grade/CGPA" formControlName="grade">
+                    <input type="text" class="form-control" placeholder="From Date- Ex: May, 2020"
+                        formControlName="fromDate">
+                    <input type="text" class="form-control" placeholder="To Date- Ex: Aug, 2020" formControlName="toDate">
+                 
                 </div>
-                <br>
+               
             </div>
         </div>
     </mat-dialog-content>

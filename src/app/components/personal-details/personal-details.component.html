@@ -4,31 +4,31 @@
 <mat-dialog-content>
  
     <div class="form-group" style="padding-bottom: 35px;">
-      <label for="qualification" style="display:block">Name</label>
+      <label for="name" style="display:block">Name</label>
       <input type="text" placeholder="First Name" class="form-control" style="width:49%; display: inline; float:left;"
         name="fname" [(ngModel)]="personalDetailsClass.fname">
       <input type="text" placeholder="Last Name" class="form-control" style="width:49%; display:inline; float:right;"
-        name="lname" ngModel>
+        name="lname" [(ngModel)]="personalDetailsClass.lname">
     </div>
 
     <div class="form-group">
       <label for="qualification">Qualification</label>
-      <input type="text" placeholder="Highest Qualification/Degree" class="form-control" name="qualification" ngModel>
+      <input type="text" placeholder="Highest Qualification/Degree" class="form-control" name="qualification" [(ngModel)]="personalDetailsClass.qualification">
     </div>
 
     <div class="form-group">
       <label for="Email">Email</label>
-      <input type="text" placeholder="Email-id" class="form-control" name="email" ngModel>
+      <input type="text" placeholder="Email-id" class="form-control" name="email" [(ngModel)]="personalDetailsClass.email">
     </div>
 
     <div class="form-group">
       <label for="phoneNumber">Phone Number</label>
-      <input type="text" placeholder="Contact Number" class="form-control" name="phoneNumber" ngModel>
+      <input type="text" placeholder="Contact Number" class="form-control" name="phoneNumber" [(ngModel)]="personalDetailsClass.phoneNumber">
     </div>
 
     <div class="form-group">
       <label for="linkedIn">LinkedIn URL</label>
-      <input type="text" placeholder="LinkedIn URL" class="form-control" name="linkedIn" ngModel>
+      <input type="text" placeholder="LinkedIn URL" class="form-control" name="linkedIn" [(ngModel)]="personalDetailsClass.linkedIn">
     </div>
 
 </mat-dialog-content>

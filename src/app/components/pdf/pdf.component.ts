@@ -4,6 +4,8 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { PersonalDetails } from 'src/app/classes/PersonalDetails';
 import { QualificationDetails } from 'src/app/classes/QualificationDetails';
 import { WorkExperience } from 'src/app/classes/WorkExperience';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { PersonalDetailsComponent } from '../personal-details/personal-details.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -21,60 +23,31 @@ export class PDFComponent implements OnInit {
   workExperience: WorkExperience[];
   documentDefinition: any;
 
-  constructor() { }
+  constructor(private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
-    this.personalDetails = new PersonalDetails();
-    this.personalDetails.fname = 'Shahista';
-    this.personalDetails.lname = 'Patel';
-    this.personalDetails.qualification = 'Bachelor of Engineering, Information Technology';
-    this.personalDetails.email = 'patelshahista96@gmail.com';
-    this.personalDetails.phoneNumber = '+91 7391071076';
-    this.personalDetails.linkedIn = 'https://www.linkedin.com/in/shahista-patel-0108';
-
-    this.initializeDocumentDefinition();
-    this.addPersonalDetailsToPDF();
-    this.getEducationalDetailsMocked();
-    console.log("degree details ", this.qualifications);
-    this.addQualificationDetailsToPDF();
-    //this.pushDetailsDynamicallyTest();
-    //this.columnPDFSample();
-    this.generatePdf();
-
+    //this.getUpdatedValues();
+    //this.initializeDocumentDefinition();
+   // this.addPersonalDetailsToPDF();
+    //this.addQualificationDetailsToPDF();
+    //this.addWorkExperienceDetailsToPDF();
   }
 
-  getEducationalDetailsMocked() {
-    const qualification = new QualificationDetails();
-    this.qualifications = [];
-    qualification.degree = 'SSC';
-    qualification.institute = 'Priyadarshani School';
-    qualification.fromDate = '';
-    qualification.toDate = '2012';
-    qualification.grade = '91%';
+  getUpdatedValues() {
+    this.dataTransferService.personalInfoObserver.subscribe((data) => {
+      //this.personalDetails = data;
+      console.log('Updated Personal Details', this.personalDetails);
+    });
 
-    
-    const qualification1 = new QualificationDetails();
+    this.dataTransferService.educationInfoObserver.subscribe((data) => {
+      this.qualifications = data;
+      console.log('Updated Educational Details', this.qualifications);
+    });
 
-    qualification1.degree = 'HSC';
-    qualification1.institute = 'Modern College, Pune';
-    qualification1.fromDate = '2012';
-    qualification1.toDate = '2014';
-    qualification1.grade = '75%';
-
-    
-
-    const qualification2 = new QualificationDetails();
-
-    qualification2.degree = 'Bachelor of Engineering, Information Technology';
-    qualification2.institute = 'Maharashtra Institute of Technology, Alandi';
-    qualification2.fromDate = '2014';
-    qualification2.toDate = '2018';
-    qualification2.grade = '75%';
-
-    this.qualifications.push(qualification2);
-    this.qualifications.push(qualification1);
-    this.qualifications.push(qualification);
-
+    this.dataTransferService.workExperienceInfoObserver.subscribe((data) => {
+      this.workExperience = data;
+      console.log('Updated Work Experience Details', this.qualifications);
+    });
   }
 
   addPersonalDetailsToPDF() {
@@ -95,7 +68,6 @@ export class PDFComponent implements OnInit {
         '\n'
       ]
     );
-
   }
 
   initializeDocumentDefinition() {
@@ -139,7 +111,65 @@ export class PDFComponent implements OnInit {
   }
 
 
+  addWorkExperienceDetailsToPDF(){
+    let count = 0;
+    this.workExperience.forEach((elem) => {
 
+      let details = [];
+      details.push(elem.designation + ' @' + elem.organizationName + ', ' + elem.fromDate + ' to ' + elem.toDate);
+      details.push(elem.jobDescription);
+      details.push(elem.responsibility);
+
+      if (count === 0) {
+        this.documentDefinition.content.push(
+          {
+            columns: [
+              {
+                width: 150,
+                text: 'Work Experience',
+              },
+              [
+                {
+                  text: details[0],
+                  bold: true
+                },
+                details[1],
+                details[2],
+                '\n'
+              ]
+            ]
+          }
+        );
+      } else {
+        this.documentDefinition.content.push(
+          {
+            columns: [
+              {
+                width: 150,
+                text: ' ',
+              },
+              [
+                {
+                  text: details[0],
+                  bold: true
+                },
+                details[1],
+                details[2],
+                '\n'
+              ]
+            ]
+          }
+        );
+      }
+
+      count++;
+    }
+    );
+
+    this.documentDefinition.content.push(
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
+    );
+  }
 
 
   addQualificationDetailsToPDF() {
@@ -147,59 +177,59 @@ export class PDFComponent implements OnInit {
     let count = 0;
     this.qualifications.forEach((elem) => {
 
-        let details = [];
-        details.push(elem.degree);
-        details.push(elem.institute);
-        details.push('Percentage : ' + elem.grade);
+      let details = [];
+      details.push(elem.degree);
+      details.push(elem.institute);
+      details.push('Percentage : ' + elem.grade);
 
-        if(count == 0){
-          this.documentDefinition.content.push(
-            {
-              columns: [
+      if (count === 0) {
+        this.documentDefinition.content.push(
+          {
+            columns: [
+              {
+                width: 150,
+                text: 'Education',
+              },
+              [
                 {
-                  width: 150,
-                  text: 'Education',
+                  text: details[0],
+                  bold: true
                 },
-                [
-                  {
-                    text: details[0],
-                    bold: true
-                  },
-                  details[1],
-                  details[2],
-                  '\n'
-                ]
+                details[1],
+                details[2],
+                '\n'
               ]
-            }
-          );
-        }else{
-          this.documentDefinition.content.push(
-            {
-              columns: [
+            ]
+          }
+        );
+      } else {
+        this.documentDefinition.content.push(
+          {
+            columns: [
+              {
+                width: 150,
+                text: ' ',
+              },
+              [
                 {
-                  width: 150,
-                  text: ' ',
+                  text: details[0],
+                  bold: true
                 },
-                [
-                  {
-                    text: details[0],
-                    bold: true
-                  },
-                  details[1],
-                  details[2],
-                  '\n'
-                ]
+                details[1],
+                details[2],
+                '\n'
               ]
-            }
-          );
-        }
-
-        count++;
+            ]
+          }
+        );
       }
+
+      count++;
+    }
     );
 
     this.documentDefinition.content.push(
-      [ { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
     );
 
   }
@@ -217,10 +247,11 @@ export class PDFComponent implements OnInit {
 
       this.documentDefinition.content.push([
         {
+          rowGap: 20,
           columns: [
             {
               width: 150,
-              text: '',
+              text: ''
             },
             this.details[0],
             this.details[1]
@@ -242,6 +273,14 @@ export class PDFComponent implements OnInit {
   }
 
   generatePdf() {
+    this.personalDetails = this.dataTransferService.personalDetails;
+    this.qualifications = this.dataTransferService.qualificationDetails;
+    this.workExperience = this.dataTransferService.workExperienceDetails;
+    console.log('Generating PDF - ', this.personalDetails);
+    this.initializeDocumentDefinition();
+    this.addPersonalDetailsToPDF();
+    this.addQualificationDetailsToPDF();
+    this.addWorkExperienceDetailsToPDF();
     pdfMake.createPdf(this.documentDefinition).open();
   }
 

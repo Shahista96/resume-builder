@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { QualificationDetails } from 'src/app/classes/QualificationDetails';
 import { MatDialogRef } from '@angular/material/dialog';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 
 @Component({
   selector: 'app-education',
@@ -13,7 +14,7 @@ export class EducationComponent implements OnInit {
   form: FormGroup;
   educationArray: Array<QualificationDetails> = [];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<EducationComponent>) { }
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<EducationComponent>, private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -44,6 +45,7 @@ export class EducationComponent implements OnInit {
 
   submit() {
     this.educationArray = this.form.value.education;
+    this.dataTransferService.qualificationDetails = this.educationArray;
     console.log('Education Details are ', this.educationArray);
     this.dialogRef.close();
   }
