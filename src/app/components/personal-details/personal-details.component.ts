@@ -15,16 +15,16 @@ export class PersonalDetailsComponent implements OnInit {
   constructor(private dataTransferService: DataTransferService, private matDialogRef: MatDialogRef<PersonalDetails>) { }
 
   ngOnInit(): void {
-    this.dataTransferService.personalInfoObserver.subscribe((data) => {
-      this.personalDetailsClass = data;
-      console.log("In Personal Details On Init - ", this.personalDetailsClass);
-    });
+    this.personalDetailsClass = new PersonalDetails();
+    if (this.dataTransferService.personalDetailsForm){
+      this.personalDetailsClass = this.dataTransferService.personalDetails;
+    }
   }
 
   submit(personalDetails): void{
     console.log('Personal Details are ', personalDetails.value);
+    this.dataTransferService.personalDetailsForm = personalDetails;
     this.dataTransferService.personalDetails = personalDetails.value;
-    this.dataTransferService.updatePersonalInfo(personalDetails.value);
     this.matDialogRef.close();
 
   }

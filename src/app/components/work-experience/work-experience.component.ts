@@ -26,9 +26,14 @@ export class WorkExperienceComponent implements OnInit {
   }
 
   createForm() {
-    this.form = this.fb.group({
-      experienceControl: this.fb.array([])
-    });
+    if (this.dataTransferService.workExperienceForm){
+      this.form = this.dataTransferService.workExperienceForm;
+    }else{
+      this.form = this.fb.group({
+        experienceControl: this.fb.array([])
+      });
+      this.addWorkExperience();
+    }
   }
 
   getWorkExperience() {
@@ -45,6 +50,7 @@ export class WorkExperienceComponent implements OnInit {
   }
 
   submit() {
+    this.dataTransferService.workExperienceForm = this.form;
     this.experience = this.form.value.experienceControl;
     console.log('Education Details are ', this.experience);
     this.dataTransferService.workExperienceDetails = this.experience;

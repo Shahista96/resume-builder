@@ -25,9 +25,15 @@ export class EducationComponent implements OnInit {
   }
 
   createForm() {
-    this.form = this.fb.group({
-      education: this.fb.array([])
-    });
+
+    if (this.dataTransferService.educationForm){
+      this.form = this.dataTransferService.educationForm;
+    }else{
+      this.form = this.fb.group({
+        education: this.fb.array([])
+      });
+      this.addEducation();
+    }
   }
 
   getEducation() {
@@ -44,6 +50,7 @@ export class EducationComponent implements OnInit {
   }
 
   submit() {
+    this.dataTransferService.educationForm = this.form;
     this.educationArray = this.form.value.education;
     this.dataTransferService.qualificationDetails = this.educationArray;
     console.log('Education Details are ', this.educationArray);

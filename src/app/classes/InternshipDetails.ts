@@ -1,4 +1,4 @@
-export class Internship {
+export class InternshipDetails {
     title: string;
     description: string;
 }

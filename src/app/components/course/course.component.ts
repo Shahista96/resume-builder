@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 
 @Component({
   selector: 'app-course',
@@ -12,7 +13,7 @@ export class CourseComponent implements OnInit {
   courseForm: FormGroup;
   coursesArray: Array<string> = [];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<CourseComponent>) { }
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<CourseComponent>, private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -23,9 +24,14 @@ export class CourseComponent implements OnInit {
   }
 
   createForm() {
-    this.courseForm = this.fb.group({
-      courses: this.fb.array([])
-    });
+    if(this.dataTransferService.courseForm){
+      this.courseForm = this.dataTransferService.courseForm;
+    }else{
+      this.courseForm = this.fb.group({
+        courses: this.fb.array([])
+      });
+      this.addCourse();
+    }
   }
 
   getCourses() {
@@ -42,7 +48,8 @@ export class CourseComponent implements OnInit {
   }
 
   submit() {
-    this.coursesArray = this.courseForm.value.courses;
+    this.dataTransferService.courseForm = this.courseForm;
+    this.dataTransferService.courses = this.courseForm.value.courses;
     console.log('Courses are :: ', this.coursesArray);
     this.dialogRef.close();
   }

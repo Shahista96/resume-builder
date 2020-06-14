@@ -17,25 +17,27 @@ export class PDFComponent implements OnInit {
 
 
   details: string[];
-
+  courses: string[];
+  hobbies: string[];
   personalDetails: PersonalDetails;
   qualifications: QualificationDetails[];
   workExperience: WorkExperience[];
   documentDefinition: any;
 
+
   constructor(private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
-    //this.getUpdatedValues();
-    //this.initializeDocumentDefinition();
+    // this.getUpdatedValues();
+    // this.initializeDocumentDefinition();
    // this.addPersonalDetailsToPDF();
-    //this.addQualificationDetailsToPDF();
-    //this.addWorkExperienceDetailsToPDF();
+    // this.addQualificationDetailsToPDF();
+    // this.addWorkExperienceDetailsToPDF();
   }
 
   getUpdatedValues() {
     this.dataTransferService.personalInfoObserver.subscribe((data) => {
-      //this.personalDetails = data;
+      // this.personalDetails = data;
       console.log('Updated Personal Details', this.personalDetails);
     });
 
@@ -115,7 +117,7 @@ export class PDFComponent implements OnInit {
     let count = 0;
     this.workExperience.forEach((elem) => {
 
-      let details = [];
+      const details = [];
       details.push(elem.designation + ' @' + elem.organizationName + ', ' + elem.fromDate + ' to ' + elem.toDate);
       details.push(elem.jobDescription);
       details.push(elem.responsibility);
@@ -125,7 +127,7 @@ export class PDFComponent implements OnInit {
           {
             columns: [
               {
-                width: 150,
+                width: 160,
                 text: 'Work Experience',
               },
               [
@@ -145,7 +147,7 @@ export class PDFComponent implements OnInit {
           {
             columns: [
               {
-                width: 150,
+                width: 160,
                 text: ' ',
               },
               [
@@ -177,7 +179,7 @@ export class PDFComponent implements OnInit {
     let count = 0;
     this.qualifications.forEach((elem) => {
 
-      let details = [];
+      const details = [];
       details.push(elem.degree);
       details.push(elem.institute);
       details.push('Percentage : ' + elem.grade);
@@ -187,7 +189,7 @@ export class PDFComponent implements OnInit {
           {
             columns: [
               {
-                width: 150,
+                width: 160,
                 text: 'Education',
               },
               [
@@ -207,7 +209,7 @@ export class PDFComponent implements OnInit {
           {
             columns: [
               {
-                width: 150,
+                width: 160,
                 text: ' ',
               },
               [
@@ -231,56 +233,140 @@ export class PDFComponent implements OnInit {
     this.documentDefinition.content.push(
       [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
     );
-
   }
 
-  pushDetailsDynamicallyTest() {
+  //Internship, Research, Projects, Training
+  addOtherDetailsToPDF(obj: Array<any>, title: string) {
 
-    this.details = [];
+    let count = 0;
+    obj.forEach((elem) => {
+
+      const details = [];
+      details.push(elem.title);
+      details.push(elem.description);
+
+      if (count === 0) {
+        this.documentDefinition.content.push(
+          {
+            columns: [
+              {
+                width: 160,
+                text: title,
+              },
+              [
+                {
+                  text: details[0],
+                  bold: true
+                },
+                details[1],
+                '\n'
+              ]
+            ]
+          }
+        );
+      } else {
+        this.documentDefinition.content.push(
+          {
+            columns: [
+              {
+                width: 160,
+                text: ' ',
+              },
+              [
+                {
+                  text: details[0],
+                  bold: true
+                },
+                details[1],
+                '\n'
+              ]
+            ]
+          }
+        );
+      }
+
+      count++;
+    }
+    );
+
+    this.documentDefinition.content.push(
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
+    );
+  }
 
 
-    this.qualifications.forEach(qualification => {
-      this.details.push(qualification.degree);
-      this.details.push(qualification.institute);
-      this.details.push('Percentage : ' + qualification.grade);
-      console.log('Details are - ', this.details)
+  // Hobbies, Courses, Skills, Achievements, Extra/Co-Curricular
+  addUnorderedListContentToPDF(obj: string[], title: string){
+    let count = 0;
+    obj.forEach((elem) => {
+      if (count === 0) {
+        this.documentDefinition.content.push(
+          {
+            columns: [
+              {
+                width: 160,
+                text: title,
+                bold: true
+              },
+              [
+                {
+                  ul: [
+                   elem
+                  ]
+                }
+              ]
+            ]
+          }
+        );
+      } else {
+        this.documentDefinition.content.push(
+          {
+            columns: [
+              {
+                width: 160,
+                text: ' ',
+              },
+              [
+                {
+                  ul: [
+                    elem
+                   ]
+                }
+              ]
+            ]
+          }
+        );
+      }
 
-      this.documentDefinition.content.push([
-        {
-          rowGap: 20,
-          columns: [
-            {
-              width: 150,
-              text: ''
-            },
-            this.details[0],
-            this.details[1]
-          ]
-        }
-      ]);
+      count++;
+    }
+    );
 
-      this.details = [];
-    });
-
-
-    // this.qualifications.forEach(qualification => {
-    //   this.documentDefinition.content.columns.push(qualification.description);
-    //   this.documentDefinition.content[2].columns[2].push(qualification.institute);
-    //   this.documentDefinition.content[2].columns[2].push(qualification.description);
-    //   this.documentDefinition.content[2].columns[2].push(qualification.institute);
-    // });
-
+    this.documentDefinition.content.push(
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
+    );
   }
 
   generatePdf() {
     this.personalDetails = this.dataTransferService.personalDetails;
     this.qualifications = this.dataTransferService.qualificationDetails;
     this.workExperience = this.dataTransferService.workExperienceDetails;
+    this.hobbies = this.dataTransferService.hobbyDetails;
+    this.courses = this.dataTransferService.courses;
     console.log('Generating PDF - ', this.personalDetails);
     this.initializeDocumentDefinition();
-    this.addPersonalDetailsToPDF();
-    this.addQualificationDetailsToPDF();
-    this.addWorkExperienceDetailsToPDF();
+    // this.addPersonalDetailsToPDF();
+    // this.addQualificationDetailsToPDF();
+    // this.addWorkExperienceDetailsToPDF();
+    //this.addUnorderedListContentToPDF(this.courses, 'Courses/Certifications');
+    //this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Expertise');
+    // this.addUnorderedListContentToPDF(this.dataTransferService.achievementDetails, 'Achievements');
+    // this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Expertise');
+    // this.addUnorderedListContentToPDF(this.dataTransferService.activityDetails, 'Extra Curricular Activities');
+    
+    //this.addOtherDetailsToPDF(this.dataTransferService.projectDetails, 'Projects');
+    //this.addOtherDetailsToPDF(this.dataTransferService.intershipDetails, 'Internships');
+    this.addOtherDetailsToPDF(this.dataTransferService.trainingDetails, 'Trainings');
     pdfMake.createPdf(this.documentDefinition).open();
   }
 

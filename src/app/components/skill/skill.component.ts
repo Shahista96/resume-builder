@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class SkillComponent implements OnInit {
   skillsForm: FormGroup;
   skills: Array<string> = [];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<SkillComponent>) { }
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<SkillComponent>, private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -24,9 +25,14 @@ export class SkillComponent implements OnInit {
   }
 
   createForm() {
-    this.skillsForm = this.fb.group({
-      skillSet: this.fb.array([])
-    });
+    if (this.dataTransferService.skillForm){
+      this.skillsForm = this.dataTransferService.skillForm;
+    }else{
+      this.skillsForm = this.fb.group({
+        skillSet: this.fb.array([])
+      });
+      this.addSkill();
+    }
   }
 
   getSkills() {
@@ -43,8 +49,10 @@ export class SkillComponent implements OnInit {
   }
 
   submit() {
+    this.dataTransferService.skillForm = this.skillsForm;
     this.skills = this.skillsForm.value.skillSet;
     console.log('Skills are :: ', this.skills);
+    this.dataTransferService.skillDetails = this.skills;
     this.dialogRef.close();
   }
 }

@@ -1,15 +1,40 @@
 <h2 mat-dialog-title>
-    <button style="width:100%" mat-raised-button color="primary">
+    <button style="width:100%; padding-right: 0px;" mat-raised-button color="primary">
         <i class="material-icons">&#xe55a;</i> 
-        Skills 
+        Projects/Research Papers 
+        <i class="material-icons" title="Add" (click)="addProject()"
+        style="font-size: 36px; float:right;vertical-align:middle !important;">
+        add_box
+    </i>
     </button>
 </h2>
-<mat-dialog-content>
- 
-  
-</mat-dialog-content>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-dialog-content>
+        <div class="form-group" formArrayName="projects">
+            <div class="input-group" *ngFor="let item of form.get('projects')['controls']; let i=index;"
+                style="margin-bottom: 20px;width:100%">
 
-<mat-dialog-actions align="end">
-  <button mat-raised-button class="btn-success">Save</button>
-    <button mat-raised-button class="btn-danger" (click)="close()">Close</button>
-</mat-dialog-actions>
+                <div [formGroupName]="i" style="margin-bottom: 20px;">
+                    <div class="input-group" style="width: 100%;">
+                        <input type="text" class="form-control" placeholder="Title" formControlName="title">
+                        <span title="Remove" (click)="removeProject(i)"
+                            class="input-group-addon glyphicon glyphicon-trash"></span>
+                    </div>
+                    <!-- <input type="text" class="form-control" placeholder="Title"
+                    formControlName="degree"> -->
+                    <input type="text" class="form-control" placeholder="Description" formControlName="description">
+
+
+                </div>
+
+            </div>
+        </div>
+    </mat-dialog-content>
+
+
+
+    <mat-dialog-actions align="end">
+        <button mat-raised-button class="btn-success">Save</button>
+        <button mat-raised-button class="btn-danger" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</form>

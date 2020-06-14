@@ -1,16 +1,26 @@
 <h2 mat-dialog-title>
-    <button style="width: 100%;" mat-raised-button color="accent">
-        <i style='font-size:20px' class='fas'>&#xf091;</i> 
+    <button style="width: 100%;padding-right: 0px;" mat-raised-button color="accent">
+        <i style='font-size:20px' class='fas'>&#xf091;</i>
         Achievements
+        <i class="material-icons" title="Add Course" (click)="addAchievement()"
+        style="font-size: 36px; float:right;vertical-align:middle !important;">
+        add_box
+    </i>
     </button>
-
 </h2>
-<mat-dialog-content>
- 
-  
-</mat-dialog-content>
-
-<mat-dialog-actions align="end">
-  <button mat-raised-button class="btn-success">Save</button>
-    <button mat-raised-button class="btn-danger" (click)="close()">Close</button>
-</mat-dialog-actions>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-dialog-content>
+        <div class="form-group" formArrayName="achievements">
+            <div class="input-group" *ngFor="let hobby of form.get('achievements')['controls']; let i=index;">
+                <input type="text" class="form-control" placeholder="Ex: Python Programming and Data Structures"
+                    [formControlName]="i">
+                <span title="Remove" (click)="removeAchievement(i)"
+                    class="input-group-addon glyphicon glyphicon-trash"></span>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button class="btn-success">Save</button>
+        <button mat-raised-button class="btn-danger" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</form>

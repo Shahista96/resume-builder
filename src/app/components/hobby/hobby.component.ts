@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 
 @Component({
   selector: 'app-hobby',
@@ -12,7 +13,7 @@ export class HobbyComponent implements OnInit {
   hobbyForm: FormGroup;
   hobbiesArray: Array<string> = [];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<HobbyComponent>) { }
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<HobbyComponent>, private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -24,7 +25,7 @@ export class HobbyComponent implements OnInit {
 
   createForm() {
     this.hobbyForm = this.fb.group({
-      hobbies: this.fb.array([])
+      hobbies: this.fb.array(this.dataTransferService.hobbyDetails)
     });
   }
 
@@ -43,6 +44,8 @@ export class HobbyComponent implements OnInit {
 
   submit() {
     this.hobbiesArray = this.hobbyForm.value.hobbies;
+    this.dataTransferService.hobbyDetails = this.hobbiesArray;
+    console.log("Hobbies are - > ", this.hobbiesArray);
     this.dialogRef.close();
   }
 }
