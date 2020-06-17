@@ -16,6 +16,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class PDFComponent implements OnInit {
 
 
+  imageEvent;
+  url;
   details: string[];
   courses: string[];
   hobbies: string[];
@@ -30,7 +32,7 @@ export class PDFComponent implements OnInit {
   ngOnInit(): void {
     // this.getUpdatedValues();
     // this.initializeDocumentDefinition();
-   // this.addPersonalDetailsToPDF();
+    // this.addPersonalDetailsToPDF();
     // this.addQualificationDetailsToPDF();
     // this.addWorkExperienceDetailsToPDF();
   }
@@ -113,7 +115,7 @@ export class PDFComponent implements OnInit {
   }
 
 
-  addWorkExperienceDetailsToPDF(){
+  addWorkExperienceDetailsToPDF() {
     let count = 0;
     this.workExperience.forEach((elem) => {
 
@@ -169,7 +171,7 @@ export class PDFComponent implements OnInit {
     );
 
     this.documentDefinition.content.push(
-      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
     );
   }
 
@@ -231,11 +233,11 @@ export class PDFComponent implements OnInit {
     );
 
     this.documentDefinition.content.push(
-      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
     );
   }
 
-  //Internship, Research, Projects, Training
+  // Internship, Research, Projects, Training
   addOtherDetailsToPDF(obj: Array<any>, title: string) {
 
     let count = 0;
@@ -290,13 +292,60 @@ export class PDFComponent implements OnInit {
     );
 
     this.documentDefinition.content.push(
-      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, 'n']
     );
   }
 
+  addPhotoToPDF() {
+    const event = this.dataTransferService.imageDetails;
+    console.log('Event in Home ', event);
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event) => { // called once readAsDataURL is completed
+      this.url = event.target.result;
+    };
+    const url = this.dataTransferService.personalDetails.photoUrl;
+    // this.documentDefinition.content.push({
+    //   image: this.url,
+    //   fit: [100, 100]
+    // });
+
+    this.documentDefinition.content.push(
+      {
+        columns: [
+          [
+            {
+              width: 250,
+              text: this.personalDetails.fname + ' ' + this.personalDetails.lname + '\n',
+              style: 'header',
+            },
+            this.personalDetails.qualification,
+            this.personalDetails.email,
+            this.personalDetails.phoneNumber,
+            this.personalDetails.linkedIn,
+            '\n',
+            '\n'
+          ],
+          [
+            {
+            width: 80,
+            image: this.url,
+            fit: [100, 100]
+          },
+          '\n'
+          ]
+        ]
+      }
+    );
+
+    this.documentDefinition.content.push(
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
+    );
+
+  }
 
   // Hobbies, Courses, Skills, Achievements, Extra/Co-Curricular
-  addUnorderedListContentToPDF(obj: string[], title: string){
+  addUnorderedListContentToPDF(obj: string[], title: string) {
     let count = 0;
     obj.forEach((elem) => {
       if (count === 0) {
@@ -311,7 +360,7 @@ export class PDFComponent implements OnInit {
               [
                 {
                   ul: [
-                   elem
+                    elem
                   ]
                 }
               ]
@@ -330,7 +379,7 @@ export class PDFComponent implements OnInit {
                 {
                   ul: [
                     elem
-                   ]
+                  ]
                 }
               ]
             ]
@@ -343,7 +392,7 @@ export class PDFComponent implements OnInit {
     );
 
     this.documentDefinition.content.push(
-      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }]
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
     );
   }
 
@@ -355,18 +404,18 @@ export class PDFComponent implements OnInit {
     this.courses = this.dataTransferService.courses;
     console.log('Generating PDF - ', this.personalDetails);
     this.initializeDocumentDefinition();
+    this.addPhotoToPDF();
     // this.addPersonalDetailsToPDF();
     // this.addQualificationDetailsToPDF();
     // this.addWorkExperienceDetailsToPDF();
-    //this.addUnorderedListContentToPDF(this.courses, 'Courses/Certifications');
-    //this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Expertise');
+    // this.addUnorderedListContentToPDF(this.courses, 'Courses/Certifications');
+    // this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Expertise');
     // this.addUnorderedListContentToPDF(this.dataTransferService.achievementDetails, 'Achievements');
     // this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Expertise');
     // this.addUnorderedListContentToPDF(this.dataTransferService.activityDetails, 'Extra Curricular Activities');
-    
-    //this.addOtherDetailsToPDF(this.dataTransferService.projectDetails, 'Projects');
-    //this.addOtherDetailsToPDF(this.dataTransferService.intershipDetails, 'Internships');
-    this.addOtherDetailsToPDF(this.dataTransferService.trainingDetails, 'Trainings');
+    // this.addOtherDetailsToPDF(this.dataTransferService.projectDetails, 'Projects');
+    // this.addOtherDetailsToPDF(this.dataTransferService.intershipDetails, 'Internships');
+    // this.addOtherDetailsToPDF(this.dataTransferService.trainingDetails, 'Trainings');
     pdfMake.createPdf(this.documentDefinition).open();
   }
 

@@ -11,6 +11,7 @@ import { ProjectsComponent } from '../projects/projects.component';
 import { SkillComponent } from '../skill/skill.component';
 import { TrainingComponent } from '../training/training.component';
 import { WorkExperienceComponent } from '../work-experience/work-experience.component';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ import { WorkExperienceComponent } from '../work-experience/work-experience.comp
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private matDialog: MatDialog) { }
+  url;
+  constructor(private matDialog: MatDialog, public dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
   }
@@ -76,5 +78,16 @@ export class HomeComponent implements OnInit {
   openWorkExperience(){
       const dialogConfig = new MatDialogConfig();
       this.matDialog.open(WorkExperienceComponent, {width: '400px', minHeight: '150px'});
+  }
+
+  onSelectFile() { 
+      // tslint:disable-next-line: prefer-const
+      let event = this.dataTransferService.imageDetails;
+      console.log('Event in Home ', event);
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      };
   }
 }

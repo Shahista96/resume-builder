@@ -6,4 +6,5 @@ export class PersonalDetails{
     email: string;
     phoneNumber: string;
     linkedIn?: string;
+    photoUrl?: string;
 }

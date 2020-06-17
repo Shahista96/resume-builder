@@ -12,6 +12,7 @@ import { TrainingDetails } from '../classes/TrainingDetails';
 })
 export class DataTransferService {
 
+  imageDetails;
   personalDetails: PersonalDetails;
   qualificationDetails: QualificationDetails[] = [];
   workExperienceDetails: WorkExperience[] = [];

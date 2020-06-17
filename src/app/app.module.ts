@@ -15,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 import 'hammerjs';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
@@ -70,7 +70,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatDialogModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

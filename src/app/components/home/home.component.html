@@ -28,6 +28,13 @@
 
 </section>
 
+<button (click)="onSelectFile()">Get Photo</button>
+<div *ngIf="url">
+    <img [src]="url" height="200"> <br/>
+
+</div>
+
 <app-pdf></app-pdf>
+
 
 <!-- <i style='font-size:24px' class='fas'>&#xf501;</i> -->

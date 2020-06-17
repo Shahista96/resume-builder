@@ -31,6 +31,17 @@
       <input type="text" placeholder="LinkedIn URL" class="form-control" name="linkedIn" [(ngModel)]="personalDetailsClass.linkedIn">
     </div>
 
+    <div class="form-group">
+      <label for="photo">Upload Photo</label>
+      <input type="file" (change)="onSelectFile($event)" class="form-control" name="photoUrl" [(ngModel)]="personalDetailsClass.photoUrl">
+    </div>
+    <!-- <input type="file" (change)="onFileSelected($event)">
+    <button type="button" (click)="onUpload()">Upload</button> -->
+    <div *ngIf="selectedFile">
+      <img [src]="url" height="200"> <br/>
+    </div>
+
+    <!-- <input type='file' (change)="onSelectFile($event)"> -->
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
