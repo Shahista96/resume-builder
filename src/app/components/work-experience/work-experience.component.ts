@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { QualificationDetails } from 'src/app/classes/QualificationDetails';
 import { MatDialogRef } from '@angular/material/dialog';
 import { WorkExperience } from 'src/app/classes/WorkExperience';
@@ -57,6 +57,12 @@ export class WorkExperienceComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  initResponsibilities(){
+    return new FormGroup({
+      responsibility: new FormControl('')
+    });
+  }
+
   createItem(): FormGroup {
     return this.fb.group({
       designation: '',
@@ -64,8 +70,23 @@ export class WorkExperienceComponent implements OnInit {
       fromDate: '',
       toDate: '',
       jobDescription: '',
-      responsibility: ''
+      responsibilities: new FormArray([
+        this.initResponsibilities()
+      ])
     });
+  }
+
+  addResponsibility(i: number): void {
+    ((this.form.get('experienceControl') as FormArray).controls[i].get('responsibilities') as FormArray).push(this.initResponsibilities());
+    console.log('After Adding Form Value is ** ', this.form);
+  }
+
+  getResponsibilities(i){
+    return ((this.form.get('experienceControl') as FormArray).controls[i].get('responsibilities') as FormArray).controls;
+  }
+
+  removeResponsibility(i: number, j: number): void {
+    (this.form.get(['experienceControl', i, 'responsibilities', j]) as FormArray).removeAt(0);
   }
 
 }

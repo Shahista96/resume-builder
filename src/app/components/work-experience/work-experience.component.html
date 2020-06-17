@@ -14,7 +14,6 @@
         <div class="form-group" formArrayName="experienceControl">
             <div class="input-group" *ngFor="let item of form.get('experienceControl')['controls']; let i=index;"
                 style="margin-bottom: 20px;">
-
                 <div [formGroupName]="i" style="margin-bottom: 20px;">
                     <div class="input-group" style="width: 100%;">
                         <input type="text" class="form-control" placeholder="Job Title/Designation"
@@ -24,15 +23,33 @@
                     </div>
                     <!-- <input type="text" class="form-control" placeholder="Title"
                     formControlName="degree"> -->
-                    <input type="text" class="form-control" placeholder="Organization" formControlName="organizationName">
+                    <input type="text" class="form-control" placeholder="Organization"
+                        formControlName="organizationName">
                     <input type="text" class="form-control" placeholder="Job Description"
                         formControlName="jobDescription">
-                    <input type="text" class="form-control" placeholder="Responsibilities"
-                        formControlName="responsibility">
+                    <!-- <input type="text" class="form-control" placeholder="Responsibilities"
+                        formControlName="responsibility"> -->
+
                     <input type="text" class="form-control" placeholder="From Date- Ex: May, 2020"
                         formControlName="fromDate">
                     <input type="text" class="form-control" placeholder="To Date- Ex: Aug, 2020"
                         formControlName="toDate">
+
+                    <div class="form-group" formArrayName="responsibilities">
+                        <div class="input-group" *ngFor="let res of getResponsibilities(i); let j=index;"
+                            style="width:100%">
+                            <div [formGroupName]="j">
+                                <div class="input-group" style="width: 100%;">
+                                    <input type="text" class="form-control" placeholder="Responsibility"
+                                        formControlName="responsibility">
+                                    <span title="Add" (click)="addResponsibility(i)"
+                                        class="input-group-addon glyphicon glyphicon-plus"></span>
+                                    <span title="Remove" (click)="removeResponsibility(i,j)"
+                                        class="input-group-addon glyphicon glyphicon-minus"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
