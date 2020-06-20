@@ -12,11 +12,12 @@ import { TrainingDetails } from '../classes/TrainingDetails';
 })
 export class DataTransferService {
 
+  totalWorkExperience;
   imageDetails;
   personalDetails: PersonalDetails;
   qualificationDetails: QualificationDetails[] = [];
   workExperienceDetails: WorkExperience[] = [];
-  hobbyDetails: string[] = [];
+  hobbyDetails: string[];
   projectDetails: ProjectDetails[] = [];
   personalDetailsForm;
   projectForm;

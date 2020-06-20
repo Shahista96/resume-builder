@@ -27,6 +27,9 @@ export class HobbyComponent implements OnInit {
     this.hobbyForm = this.fb.group({
       hobbies: this.fb.array(this.dataTransferService.hobbyDetails)
     });
+    if (this.dataTransferService.hobbyDetails.length < 1){
+     this.addHobby();
+    }
   }
 
   getHobbies() {
@@ -45,7 +48,6 @@ export class HobbyComponent implements OnInit {
   submit() {
     this.hobbiesArray = this.hobbyForm.value.hobbies;
     this.dataTransferService.hobbyDetails = this.hobbiesArray;
-    console.log("Hobbies are - > ", this.hobbiesArray);
     this.dialogRef.close();
   }
 }

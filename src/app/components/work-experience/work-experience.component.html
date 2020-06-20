@@ -9,6 +9,9 @@
     </button>
 
 </h2>
+
+<input class="form-control" style="margin-bottom: 20px;" styletype="number" placeholder="Total Work Experience"
+                        [(ngModel)]="totalWorkExperience">
 <form [formGroup]="form" (ngSubmit)="submit()">
     <mat-dialog-content>
         <div class="form-group" formArrayName="experienceControl">
@@ -25,8 +28,8 @@
                     formControlName="degree"> -->
                     <input type="text" class="form-control" placeholder="Organization"
                         formControlName="organizationName">
-                    <input type="text" class="form-control" placeholder="Job Description"
-                        formControlName="jobDescription">
+                    <textarea type="text" class="form-control" placeholder="Job Description"
+                        formControlName="jobDescription"></textarea>
                     <!-- <input type="text" class="form-control" placeholder="Responsibilities"
                         formControlName="responsibility"> -->
 
@@ -36,7 +39,7 @@
                         formControlName="toDate">
 
                     <div class="form-group" formArrayName="responsibilities">
-                        <div class="input-group" *ngFor="let res of getResponsibilities(i); let j=index;"
+                        <div class="input-group" *ngFor="let res of item.get('responsibilities').controls; let j=index;"
                             style="width:100%">
                             <div [formGroupName]="j">
                                 <div class="input-group" style="width: 100%;">

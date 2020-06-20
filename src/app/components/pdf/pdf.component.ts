@@ -114,15 +114,24 @@ export class PDFComponent implements OnInit {
     return documentDefinition;
   }
 
+  getResponsibilitiesArrayToString(arr){
+    let str = '';
+    arr.forEach(element => {
+      str = str + '* ' + element.responsibility + '\n';
+    });
+    return str;
+  }
 
   addWorkExperienceDetailsToPDF() {
     let count = 0;
+    console.log('*********');
+    console.log(this.workExperience);
     this.workExperience.forEach((elem) => {
 
       const details = [];
       details.push(elem.designation + ' @' + elem.organizationName + ', ' + elem.fromDate + ' to ' + elem.toDate);
       details.push(elem.jobDescription);
-      details.push(elem.responsibility);
+      details.push(this.getResponsibilitiesArrayToString(elem.responsibilities));
 
       if (count === 0) {
         this.documentDefinition.content.push(
@@ -131,13 +140,23 @@ export class PDFComponent implements OnInit {
               {
                 width: 160,
                 text: 'Work Experience',
+                bold: true
               },
               [
+                {
+                  text: 'Total Experience - ' + this.dataTransferService.totalWorkExperience,
+                  bold: true
+                },
+                '\n',
                 {
                   text: details[0],
                   bold: true
                 },
                 details[1],
+                {
+                  text: 'Responsibilities: ',
+                  bold: true
+                },
                 details[2],
                 '\n'
               ]
@@ -158,6 +177,10 @@ export class PDFComponent implements OnInit {
                   bold: true
                 },
                 details[1],
+                {
+                  text: 'Responsibilities: ',
+                  bold: true
+                },
                 details[2],
                 '\n'
               ]
@@ -165,7 +188,6 @@ export class PDFComponent implements OnInit {
           }
         );
       }
-
       count++;
     }
     );
@@ -182,7 +204,7 @@ export class PDFComponent implements OnInit {
     this.qualifications.forEach((elem) => {
 
       const details = [];
-      details.push(elem.degree);
+      details.push(elem.degree + ' (' + elem.fromDate + ' to ' + elem.toDate + ')');
       details.push(elem.institute);
       details.push('Percentage : ' + elem.grade);
 
@@ -193,6 +215,7 @@ export class PDFComponent implements OnInit {
               {
                 width: 160,
                 text: 'Education',
+                bold: true
               },
               [
                 {
@@ -254,6 +277,7 @@ export class PDFComponent implements OnInit {
               {
                 width: 160,
                 text: title,
+                bold: true
               },
               [
                 {
@@ -292,7 +316,7 @@ export class PDFComponent implements OnInit {
     );
 
     this.documentDefinition.content.push(
-      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, 'n']
+      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
     );
   }
 
@@ -328,8 +352,8 @@ export class PDFComponent implements OnInit {
           ],
           [
             {
-            width: 80,
             image: this.url,
+            alignment: 'right',
             fit: [100, 100]
           },
           '\n'
@@ -392,7 +416,7 @@ export class PDFComponent implements OnInit {
     );
 
     this.documentDefinition.content.push(
-      [{ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
+      ['\n', { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
     );
   }
 
@@ -404,18 +428,53 @@ export class PDFComponent implements OnInit {
     this.courses = this.dataTransferService.courses;
     console.log('Generating PDF - ', this.personalDetails);
     this.initializeDocumentDefinition();
-    this.addPhotoToPDF();
-    // this.addPersonalDetailsToPDF();
-    // this.addQualificationDetailsToPDF();
-    // this.addWorkExperienceDetailsToPDF();
-    // this.addUnorderedListContentToPDF(this.courses, 'Courses/Certifications');
-    // this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Expertise');
-    // this.addUnorderedListContentToPDF(this.dataTransferService.achievementDetails, 'Achievements');
-    // this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Expertise');
-    // this.addUnorderedListContentToPDF(this.dataTransferService.activityDetails, 'Extra Curricular Activities');
-    // this.addOtherDetailsToPDF(this.dataTransferService.projectDetails, 'Projects');
-    // this.addOtherDetailsToPDF(this.dataTransferService.intershipDetails, 'Internships');
-    // this.addOtherDetailsToPDF(this.dataTransferService.trainingDetails, 'Trainings');
+    if (this.dataTransferService.imageDetails){
+      this.addPhotoToPDF();
+    }else{
+      this.addPersonalDetailsToPDF();
+    }
+
+    if (this.workExperience.length > 0){
+      this.addWorkExperienceDetailsToPDF();
+    }
+
+    if (this.qualifications.length > 0){
+      this.addQualificationDetailsToPDF();
+    }
+
+    if (this.dataTransferService.projectDetails.length > 0){
+      this.addOtherDetailsToPDF(this.dataTransferService.projectDetails, 'Projects');
+    }
+
+    if (this.dataTransferService.intershipDetails.length > 0){
+      this.addOtherDetailsToPDF(this.dataTransferService.intershipDetails, 'Internships');
+    }
+
+    if (this.dataTransferService.trainingDetails.length > 0){
+      this.addOtherDetailsToPDF(this.dataTransferService.trainingDetails, 'Trainings');
+    }
+
+    if (this.courses.length > 0){
+      this.addUnorderedListContentToPDF(this.courses, 'Courses/Certifications');
+    }
+
+    if (this.dataTransferService.skillDetails.length > 0){
+      this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Expertise');
+    }
+
+    if (this.dataTransferService.achievementDetails.length > 0){
+      this.addUnorderedListContentToPDF(this.dataTransferService.achievementDetails, 'Achievements');
+    }
+
+    if (this.dataTransferService.hobbyDetails.length > 0){
+      this.addUnorderedListContentToPDF(this.dataTransferService.hobbyDetails, 'Hobbies');
+    }
+
+    if (this.dataTransferService.activityDetails.length > 0){
+      this.addUnorderedListContentToPDF(this.dataTransferService.activityDetails, 'Extra Curricular Activities');
+    }
+
+  
     pdfMake.createPdf(this.documentDefinition).open();
   }
 

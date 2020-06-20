@@ -14,6 +14,7 @@ export class WorkExperienceComponent implements OnInit {
 
   form: FormGroup;
   experience: WorkExperience[];
+  totalWorkExperience;
 
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<WorkExperienceComponent>, private dataTransferService: DataTransferService) { }
 
@@ -26,9 +27,9 @@ export class WorkExperienceComponent implements OnInit {
   }
 
   createForm() {
-    if (this.dataTransferService.workExperienceForm){
+    if (this.dataTransferService.workExperienceForm) {
       this.form = this.dataTransferService.workExperienceForm;
-    }else{
+    } else {
       this.form = this.fb.group({
         experienceControl: this.fb.array([])
       });
@@ -46,10 +47,11 @@ export class WorkExperienceComponent implements OnInit {
   }
 
   removeWorkExperience(index: number) {
-    (this.form.get('work') as FormArray).removeAt(index);
+    (this.form.get('experienceControl') as FormArray).removeAt(index);
   }
 
   submit() {
+    this.dataTransferService.totalWorkExperience = this.totalWorkExperience;
     this.dataTransferService.workExperienceForm = this.form;
     this.experience = this.form.value.experienceControl;
     console.log('Education Details are ', this.experience);
@@ -57,7 +59,7 @@ export class WorkExperienceComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  initResponsibilities(){
+  initResponsibilities() {
     return new FormGroup({
       responsibility: new FormControl('')
     });
@@ -81,12 +83,20 @@ export class WorkExperienceComponent implements OnInit {
     console.log('After Adding Form Value is ** ', this.form);
   }
 
-  getResponsibilities(i){
+  getResponsibilities(i) {
     return ((this.form.get('experienceControl') as FormArray).controls[i].get('responsibilities') as FormArray).controls;
   }
 
-  removeResponsibility(i: number, j: number): void {
-    (this.form.get(['experienceControl', i, 'responsibilities', j]) as FormArray).removeAt(0);
+  removeResponsibility(i, j): void {
+    if (j !== 0) {
+      const control = (this.form.get('experienceControl') as FormArray).controls[i].get('responsibilities') as FormArray;
+      control.removeAt(j);
+    }
+
+
+    //((this.form.get('experienceControl') as FormArray).controls[i].get('responsibilities') as FormArray).controls[j]
+
+    //(this.form.get(['experienceControl', i, 'responsibilities', j]) as FormArray).removeAt(0);
   }
 
 }

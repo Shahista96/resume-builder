@@ -4,5 +4,5 @@ export class WorkExperience{
     fromDate: string;
     toDate: string;
     jobDescription: string;
-    responsibility: string[];
+    responsibilities: string[];
 }
