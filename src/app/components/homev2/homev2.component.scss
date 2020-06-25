@@ -1,0 +1,50 @@
+// .temp{
+//     width: 700px;
+//     height: 700px;
+//     border: blue;
+//     border-width: thick;
+// }
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+.btn-squared-default
+    {
+        width: 150px !important;
+        height: 150px !important;
+        font-size: 15px;
+    }
+
+        .btn-squared-default:hover
+        {
+            border: 3px solid white;
+            font-weight: 800;
+        }
+
+    .btn-squared-default-plain
+    {
+        width: 160px !important;
+        height: 160px !important;
+        font-size: 16px;
+    }
+
+        .btn-squared-default-plain:hover
+        {
+            border: 0px solid white;
+        }
+
+
+        i{
+            font-size:70px;
+        }
+// .bg{
+//     background-image: url("./../../../../src/assets/images/education.jpg");
+//     height: 50%;
+
+//   /* Center and scale the image nicely */
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }

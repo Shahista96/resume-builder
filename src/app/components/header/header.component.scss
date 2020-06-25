@@ -1,3 +1,30 @@
 .grad {
     background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 68, 255));
 }
+
+button{
+    margin-right: 20px;
+    width: 150px;
+    height: 50%;
+    background-color: cadetblue;
+}
+
+.nav-options{
+    margin-right: 20px;
+}
+
+img{
+    margin-right: 50px;
+}
+
+button:hover {
+    background-color: #f05eb3;
+    color:white;
+}
+
+mat-button-toggle{
+    margin-right: 20px;
+    width: 150px;
+    height: 50%;
+    background-color: cadetblue;
+}

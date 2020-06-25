@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 import 'hammerjs';
@@ -34,6 +34,7 @@ import { TrainingComponent } from './components/training/training.component';
 import { CourseComponent } from './components/course/course.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { Homev2Component } from './components/homev2/homev2.component';
 
 
 
@@ -53,7 +54,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ExtraCurricularComponent,
     AchievementComponent,
     TrainingComponent,
-    CourseComponent
+    CourseComponent,
+    Homev2Component
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     MatSelectModule,
     MatSlideToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

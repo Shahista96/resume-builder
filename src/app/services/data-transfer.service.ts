@@ -17,7 +17,7 @@ export class DataTransferService {
   personalDetails: PersonalDetails;
   qualificationDetails: QualificationDetails[] = [];
   workExperienceDetails: WorkExperience[] = [];
-  hobbyDetails: string[];
+  hobbyDetails: string[] = [];
   projectDetails: ProjectDetails[] = [];
   personalDetailsForm;
   projectForm;

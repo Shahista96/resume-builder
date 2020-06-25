@@ -20,21 +20,15 @@
                 Trainings </button>
             <button style="width:32%; float:right;" mat-raised-button color="warn" (click)="openCourse()"><i style='font-size:20px' class='fas'>&#xf501;</i> Courses</button>   
         </div>
+
+        <app-pdf></app-pdf>
     </div>
     <div class="two">
-        <img src=".././assets/images/resume-sample-1.jpg" class="id_resume_sample" alt="Resume Format 1">
-        <img src=".././assets/images/resume-sample-2.jpg" class="id_resume_sample" alt="Resume Format 1">
+        <img src=".././assets/images/SampleResume1.JPG" class="id_resume_sample" alt="Resume Format 1">
+        <img src=".././assets/images/SampleResume2.JPG" class="id_resume_sample" alt="Resume Format 1">
     </div>
-
 </section>
 
-<button (click)="onSelectFile()">Get Photo</button>
-<div *ngIf="url">
-    <img [src]="url" height="200"> <br/>
-
-</div>
-
-<app-pdf></app-pdf>
 
 
 <!-- <i style='font-size:24px' class='fas'>&#xf501;</i> -->
