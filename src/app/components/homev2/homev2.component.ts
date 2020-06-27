@@ -80,7 +80,7 @@ export class Homev2Component implements OnInit {
       this.matDialog.open(WorkExperienceComponent, {width: '400px', minHeight: '150px'});
   }
 
-  onSelectFile() { 
+  onSelectFile() {
       // tslint:disable-next-line: prefer-const
       let event = this.dataTransferService.imageDetails;
       console.log('Event in Home ', event);
@@ -90,5 +90,4 @@ export class Homev2Component implements OnInit {
         this.url = event.target.result;
       };
   }
-
 }
