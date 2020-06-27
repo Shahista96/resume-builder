@@ -19,8 +19,9 @@ img{
 
         .btn-squared-default:hover
         {
-            border: 3px solid white;
+            border: 1px solid white;
             font-weight: 800;
+            border-radius: 0px;
         }
 
     .btn-squared-default-plain
@@ -28,11 +29,13 @@ img{
         width: 160px !important;
         height: 160px !important;
         font-size: 16px;
+        border-radius: 0px;
     }
 
         .btn-squared-default-plain:hover
         {
             border: 0px solid white;
+            border-radius: 0px;
         }
 
 

@@ -35,7 +35,9 @@ import { CourseComponent } from './components/course/course.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Homev2Component } from './components/homev2/homev2.component';
-
+import { FooterComponent } from './components/footer/footer.component';
+import { TemplatesComponent } from './components/templates/templates.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { Homev2Component } from './components/homev2/homev2.component';
     AchievementComponent,
     TrainingComponent,
     CourseComponent,
-    Homev2Component
+    Homev2Component,
+    FooterComponent,
+    TemplatesComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,8 @@ import { Homev2Component } from './components/homev2/homev2.component';
     MatSelectModule,
     MatSlideToggleModule,
     HttpClientModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
