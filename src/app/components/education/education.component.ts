@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QualificationDetails } from 'src/app/classes/QualificationDetails';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
@@ -13,6 +13,7 @@ export class EducationComponent implements OnInit {
 
   form: FormGroup;
   educationArray: Array<QualificationDetails> = [];
+  disableSubmit = true;
 
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<EducationComponent>, private dataTransferService: DataTransferService) { }
 
@@ -34,6 +35,8 @@ export class EducationComponent implements OnInit {
       });
       this.addEducation();
     }
+
+    this.form.valueChanges.subscribe((data) => this.disableSubmit = !(this.form.valid));
   }
 
   getEducation() {
@@ -59,11 +62,11 @@ export class EducationComponent implements OnInit {
 
   createItem(): FormGroup {
     return this.fb.group({
-      degree: '',
-      institute: '',
-      grade: '',
-      fromDate: '',
-      toDate: ''
+      degree: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+      institute: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+      grade: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+      fromDate: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+      toDate: this.fb.control('', [Validators.required, Validators.minLength(1)])
     });
   }
 }

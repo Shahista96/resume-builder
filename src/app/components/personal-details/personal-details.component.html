@@ -6,24 +6,24 @@
     <div class="form-group" style="padding-bottom: 35px;">
       <label for="name" style="display:block">Name</label>
       <input type="text" placeholder="First Name" class="form-control" style="width:49%; display: inline; float:left;"
-        name="fname" [(ngModel)]="personalDetailsClass.fname">
+        name="fname" [(ngModel)]="personalDetailsClass.fname" required>
       <input type="text" placeholder="Last Name" class="form-control" style="width:49%; display:inline; float:right;"
         name="lname" [(ngModel)]="personalDetailsClass.lname">
     </div>
 
     <div class="form-group">
       <label for="qualification">Qualification</label>
-      <input type="text" placeholder="Highest Qualification/Degree" class="form-control" name="qualification" [(ngModel)]="personalDetailsClass.qualification">
+      <input type="text" placeholder="Highest Qualification/Degree" class="form-control" name="qualification" [(ngModel)]="personalDetailsClass.qualification" required>
     </div>
 
     <div class="form-group">
       <label for="Email">Email</label>
-      <input type="text" placeholder="Email-id" class="form-control" name="email" [(ngModel)]="personalDetailsClass.email">
+      <input type="text" required placeholder="Email-id" class="form-control" name="email" [(ngModel)]="personalDetailsClass.email" >
     </div>
 
     <div class="form-group">
       <label for="phoneNumber">Phone Number</label>
-      <input type="text" placeholder="Contact Number" class="form-control" name="phoneNumber" [(ngModel)]="personalDetailsClass.phoneNumber">
+      <input type="text" required placeholder="Contact Number" class="form-control" name="phoneNumber" [(ngModel)]="personalDetailsClass.phoneNumber">
     </div>
 
     <div class="form-group">
@@ -45,7 +45,13 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-raised-button class="btn-success" type="submit">Save</button>
-    <button mat-raised-button class="btn-danger" (click)="close()">Close</button>
+  <button mat-raised-button color="accent">
+    <i class="glyphicon glyphicon-arrow-left"></i>
+  </button>
+  <button style="margin-right: 10px;" class="btn btn-success" type="submit">Save</button>
+    <button class="btn btn-danger" (click)="close()">Close</button>
+    <button mat-raised-button color="accent">
+      <i class="glyphicon glyphicon-arrow-right"></i>
+    </button>
 </mat-dialog-actions>
 </form>
