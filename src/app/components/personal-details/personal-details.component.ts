@@ -16,7 +16,9 @@ export class PersonalDetailsComponent implements OnInit {
   selectedFile = null;
   personalDetailsClass: PersonalDetails;
 
-  constructor(private matDialog: MatDialog, private dataTransferService: DataTransferService, private matDialogRef: MatDialogRef<PersonalDetails>) { }
+  constructor(private matDialog: MatDialog,
+              private dataTransferService: DataTransferService,
+              private matDialogRef: MatDialogRef<PersonalDetails>) { }
 
   ngOnInit(): void {
     this.personalDetailsClass = new PersonalDetails();

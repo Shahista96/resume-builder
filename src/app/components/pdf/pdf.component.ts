@@ -28,7 +28,9 @@ export class PDFComponent implements OnInit {
   documentDefinition: any;
 
 
-  constructor(private dataTransferService: DataTransferService, private matDialogRef: MatDialogRef<PDFComponent>) { }
+  constructor(private dataTransferService: DataTransferService, 
+
+    private matDialogRef: MatDialogRef<PDFComponent>) { }
 
   ngOnInit(): void {
     // this.getUpdatedValues();
@@ -475,8 +477,11 @@ export class PDFComponent implements OnInit {
       this.addUnorderedListContentToPDF(this.dataTransferService.activityDetails, 'Extra Curricular Activities');
     }
 
-  
     pdfMake.createPdf(this.documentDefinition).open();
+  }
+
+  close() {
+    this.matDialogRef.close();
   }
 
 }

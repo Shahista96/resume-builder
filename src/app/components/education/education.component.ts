@@ -60,6 +60,7 @@ export class EducationComponent implements OnInit {
   }
 
   submit() {
+    alert('Submit Education Triggered');
     this.dataTransferService.educationForm = this.form;
     this.educationArray = this.form.value.education;
     this.dataTransferService.qualificationDetails = this.educationArray;
