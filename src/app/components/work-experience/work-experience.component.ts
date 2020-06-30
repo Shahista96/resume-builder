@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { QualificationDetails } from 'src/app/classes/QualificationDetails';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { WorkExperience } from 'src/app/classes/WorkExperience';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { EducationComponent } from '../education/education.component';
+import { HobbyComponent } from '../hobby/hobby.component';
 
 @Component({
   selector: 'app-work-experience',
@@ -16,7 +18,8 @@ export class WorkExperienceComponent implements OnInit {
   experience: WorkExperience[];
   totalWorkExperience;
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<WorkExperienceComponent>, private dataTransferService: DataTransferService) { }
+  constructor(private fb: FormBuilder, private matDialog: MatDialog,
+              public dialogRef: MatDialogRef<WorkExperienceComponent>, private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -92,11 +95,14 @@ export class WorkExperienceComponent implements OnInit {
       const control = (this.form.get('experienceControl') as FormArray).controls[i].get('responsibilities') as FormArray;
       control.removeAt(j);
     }
+  }
 
+  openEducation(){
+    this.matDialog.open(EducationComponent, {width: '400px', minHeight: '150px'});
+  }
 
-    //((this.form.get('experienceControl') as FormArray).controls[i].get('responsibilities') as FormArray).controls[j]
-
-    //(this.form.get(['experienceControl', i, 'responsibilities', j]) as FormArray).removeAt(0);
+  openHobby(){
+    this.matDialog.open(HobbyComponent, {width: '400px', minHeight: '150px'});
   }
 
 }

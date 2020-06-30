@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
 import { InternshipDetails } from 'src/app/classes/InternshipDetails';
+import { HobbyComponent } from '../hobby/hobby.component';
+import { ProjectsComponent } from '../projects/projects.component';
 
 @Component({
   selector: 'app-internship',
@@ -14,7 +16,7 @@ export class InternshipComponent implements OnInit {
   form: FormGroup;
   internshipArray: InternshipDetails[];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<InternshipComponent>, private dataTransferService: DataTransferService) { }
+  constructor(private fb: FormBuilder, private matDialog: MatDialog, public dialogRef: MatDialogRef<InternshipComponent>, private dataTransferService: DataTransferService) { }
   
 
   ngOnInit(): void {
@@ -62,5 +64,13 @@ export class InternshipComponent implements OnInit {
       title: '',
       description: '',
     });
+  }
+
+  openHobby(){
+    this.matDialog.open(HobbyComponent, {width: '400px', minHeight: '150px'});
+  }
+
+  openProjects(){
+    this.matDialog.open(ProjectsComponent, {width: '400px', minHeight: '150px'});
   }
 }

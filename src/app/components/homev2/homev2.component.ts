@@ -12,6 +12,7 @@ import { SkillComponent } from '../skill/skill.component';
 import { TrainingComponent } from '../training/training.component';
 import { WorkExperienceComponent } from '../work-experience/work-experience.component';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { PDFComponent } from '../pdf/pdf.component';
 
 @Component({
   selector: 'app-homev2',
@@ -89,5 +90,9 @@ export class Homev2Component implements OnInit {
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = event.target.result;
       };
+  }
+
+  openDownloadPDF(){
+    this.matDialog.open(PDFComponent, {width: '400px', minHeight: '150px', maxHeight: '300px'});
   }
 }

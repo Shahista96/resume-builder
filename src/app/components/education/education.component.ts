@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QualificationDetails } from 'src/app/classes/QualificationDetails';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { slideLeft } from '../../animations/app.animations';
+import { fromEventPattern } from 'rxjs';
+import { WorkExperienceComponent } from '../work-experience/work-experience.component';
+import { PersonalDetailsComponent } from '../personal-details/personal-details.component';
 
 @Component({
   selector: 'app-education',
@@ -15,7 +19,10 @@ export class EducationComponent implements OnInit {
   educationArray: Array<QualificationDetails> = [];
   disableSubmit = true;
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<EducationComponent>, private dataTransferService: DataTransferService) { }
+  constructor(private fb: FormBuilder,
+              public dialogRef: MatDialogRef<EducationComponent>,
+              private dataTransferService: DataTransferService,
+              private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -27,9 +34,9 @@ export class EducationComponent implements OnInit {
 
   createForm() {
 
-    if (this.dataTransferService.educationForm){
+    if (this.dataTransferService.educationForm) {
       this.form = this.dataTransferService.educationForm;
-    }else{
+    } else {
       this.form = this.fb.group({
         education: this.fb.array([])
       });
@@ -68,5 +75,13 @@ export class EducationComponent implements OnInit {
       fromDate: this.fb.control('', [Validators.required, Validators.minLength(1)]),
       toDate: this.fb.control('', [Validators.required, Validators.minLength(1)])
     });
+  }
+
+  openWorkExperience() {
+    this.matDialog.open(WorkExperienceComponent, { width: '400px', minHeight: '150px' });
+  }
+
+  openPersonalDetails() {
+    this.matDialog.open(PersonalDetailsComponent, { width: '400px', minHeight: '150px' });
   }
 }

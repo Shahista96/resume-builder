@@ -20,12 +20,12 @@
         </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-        <button mat-raised-button color="accent">
+        <button mat-raised-button (click)="openProjects()" style="margin-right: 10px;" color="accent">
             <i class="glyphicon glyphicon-arrow-left"></i>
           </button>
         <button style="margin-right: 10px;" class="btn btn-success">Save</button>
-        <button class="btn btn-danger" (click)="close()">Close</button>
-        <button mat-raised-button color="accent">
+        <button style="margin-right: 10px;" class="btn btn-danger" (click)="close()">Close</button>
+        <button mat-raised-button (click)="openSkill()" color="accent">
             <i class="glyphicon glyphicon-arrow-right"></i>
           </button>
     </mat-dialog-actions>

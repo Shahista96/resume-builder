@@ -1,11 +1,11 @@
 <h2 mat-dialog-title>
     <button style="width:100%; padding-right: 0px;" mat-raised-button color="primary">
-        <i class="material-icons">&#xe55a;</i> 
-        Projects/Research Papers 
+        <i class="material-icons">&#xe55a;</i>
+        Projects/Research Papers
         <i class="material-icons" title="Add" (click)="addProject()"
-        style="font-size: 36px; float:right;vertical-align:middle !important;">
-        add_box
-    </i>
+            style="font-size: 36px; float:right;vertical-align:middle !important;">
+            add_box
+        </i>
     </button>
 </h2>
 <form [formGroup]="form" (ngSubmit)="submit()">
@@ -35,14 +35,14 @@
 
 
     <mat-dialog-actions align="end">
-        
-<button mat-raised-button color="accent">
-    <i class="glyphicon glyphicon-arrow-left"></i>
-  </button>
+        <button mat-raised-button (click)="openInternship()" style="margin-right: 10px;" color="accent">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+        </button>
         <button style="margin-right: 10px;" class="btn btn-success">Save</button>
-        <button class="btn btn-danger" (click)="close()">Close</button>
-        <button mat-raised-button color="accent">
+        <button style="margin-right: 10px;" class="btn btn-danger" (click)="close()">Close</button>
+        <button mat-raised-button (click)="openAchievement()" color="accent">
             <i class="glyphicon glyphicon-arrow-right"></i>
-          </button>
+        </button>
     </mat-dialog-actions>
+
 </form>

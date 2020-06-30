@@ -45,12 +45,9 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-raised-button color="accent">
-    <i class="glyphicon glyphicon-arrow-left"></i>
-  </button>
   <button style="margin-right: 10px;" class="btn btn-success" type="submit">Save</button>
     <button class="btn btn-danger" (click)="close()">Close</button>
-    <button mat-raised-button color="accent">
+    <button (click)="openEducation()" mat-raised-button color="accent">
       <i class="glyphicon glyphicon-arrow-right"></i>
     </button>
 </mat-dialog-actions>

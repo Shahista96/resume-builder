@@ -1,12 +1,36 @@
 
-<div style="height: 600px;overflow-y: auto;">
 
-    <button style="width: 90%!important;margin-bottom: 10px;" mat-raised-button color="primary" (click)="generatePdf()"><span class="material-icons">
-        cloud_download
-    </span> Download PDF </button>
 
-<button style="width: 90%!important;margin-bottom: 10px;" mat-raised-button color="primary" (click)="generatePdf()"><span class="material-icons">
-        open_in_new
-    </span> Open PDF </button>
-</div>
+    
+
+    <h2 mat-dialog-title>
+        <button style="width: 100%;padding-right: 0px;" mat-raised-button color="accent">
+           
+           Generate Resume
+           
+  
+        </button>
+    </h2>
+   
+        <mat-dialog-content>
+            <button style="width: 100%!important;margin-bottom: 10px;" mat-raised-button color="primary" (click)="generatePdf()"><span class="material-icons">
+                cloud_download
+            </span> Download PDF </button>
+        
+        <button style="width: 100%!important;margin-bottom: 10px;" mat-raised-button color="primary" (click)="generatePdf()"><span class="material-icons">
+                open_in_new
+            </span> Open PDF </button>
+        
+        </mat-dialog-content>
+    
+        <mat-dialog-actions align="end">
+            <button mat-raised-button style="margin-right: 10px;" color="accent">
+                <i class="glyphicon glyphicon-arrow-left"></i>
+              </button>
+            
+            <button style="margin-right: 10px;" class="btn btn-danger" >Close</button>
+            
+        </mat-dialog-actions>
+
+
 

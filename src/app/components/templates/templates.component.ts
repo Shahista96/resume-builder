@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 
 @Component({
   selector: 'app-templates',
@@ -8,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class TemplatesComponent implements OnInit {
 
   color = 'warn';
-  constructor() { }
+
+  constructor(public dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
   }
+
 
 }

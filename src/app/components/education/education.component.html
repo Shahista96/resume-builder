@@ -1,3 +1,5 @@
+<!-- <div [@slideLeft]> -->
+
 <h2 mat-dialog-title>
     <button style="width: 100%;padding-right: 0px;" mat-raised-button color="accent">
         <i style='font-size:20px' class='fas fa-graduation-cap'></i>
@@ -11,8 +13,9 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
     <mat-dialog-content>
         <div class="form-group" formArrayName="education">
-            <div class="input-group" *ngFor="let item of form.get('education')['controls']; let i=index;" style="margin-bottom: 20px;">
-                
+            <div class="input-group" *ngFor="let item of form.get('education')['controls']; let i=index;"
+                style="margin-bottom: 20px;">
+
                 <div [formGroupName]="i" style="margin-bottom: 20px;">
                     <div class="input-group" style="width: 100%;">
                         <input type="text" class="form-control" placeholder="Title" formControlName="degree">
@@ -25,16 +28,28 @@
                     <input type="text" class="form-control" placeholder="Percentage/Grade/CGPA" formControlName="grade">
                     <input type="text" class="form-control" placeholder="From Date- Ex: May, 2020"
                         formControlName="fromDate">
-                    <input type="text" class="form-control" placeholder="To Date- Ex: Aug, 2020" formControlName="toDate">
-                 
+                    <input type="text" class="form-control" placeholder="To Date- Ex: Aug, 2020"
+                        formControlName="toDate">
+
                 </div>
-               
+
             </div>
         </div>
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">
-        <button style="margin-right: 10px;" [disabled]="disableSubmit" class="btn btn-success" (click)="submit()">Save</button>
-        <button class="btn btn-danger" (click)="close()">Close</button>
+
+        <button mat-raised-button (click)="openPersonalDetails()" style="margin-right: 10px;" color="accent">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+        </button>
+        <button style="margin-right: 10px;" [disabled]="disableSubmit" class="btn btn-success"
+            (click)="submit()">Save</button>
+        <button style="margin-right: 10px;" class="btn btn-danger" (click)="close()">Close</button>
+        <button mat-raised-button (click)="openWorkExperience()" color="accent">
+            <i class="glyphicon glyphicon-arrow-right"></i>
+        </button>
     </mat-dialog-actions>
+    
 </form>
+
+<!-- </div> -->

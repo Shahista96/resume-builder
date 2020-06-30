@@ -12,6 +12,10 @@ import { TrainingDetails } from '../classes/TrainingDetails';
 })
 export class DataTransferService {
 
+  template1 = true;
+  template2 = false;
+  template3 = false;
+
   totalWorkExperience;
   imageDetails;
   personalDetails: PersonalDetails;

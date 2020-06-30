@@ -6,6 +6,7 @@ import { QualificationDetails } from 'src/app/classes/QualificationDetails';
 import { WorkExperience } from 'src/app/classes/WorkExperience';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
 import { PersonalDetailsComponent } from '../personal-details/personal-details.component';
+import { MatDialogRef } from '@angular/material/dialog';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -27,7 +28,7 @@ export class PDFComponent implements OnInit {
   documentDefinition: any;
 
 
-  constructor(private dataTransferService: DataTransferService) { }
+  constructor(private dataTransferService: DataTransferService, private matDialogRef: MatDialogRef<PDFComponent>) { }
 
   ngOnInit(): void {
     // this.getUpdatedValues();

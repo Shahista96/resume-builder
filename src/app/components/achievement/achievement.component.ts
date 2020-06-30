@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { ProjectsComponent } from '../projects/projects.component';
+import { SkillComponent } from '../skill/skill.component';
 
 @Component({
   selector: 'app-achievement',
@@ -13,7 +15,7 @@ export class AchievementComponent implements OnInit {
   form: FormGroup;
   achievementsArray: Array<string> = [];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AchievementComponent>, private dataTransferService: DataTransferService) { }
+  constructor(private fb: FormBuilder,private matDialog: MatDialog, public dialogRef: MatDialogRef<AchievementComponent>, private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -54,5 +56,13 @@ export class AchievementComponent implements OnInit {
     this.dataTransferService.achievementDetails = this.achievementsArray;
     console.log('Achievements are - > ', this.achievementsArray);
     this.dialogRef.close();
+  }
+
+  openSkill(){
+    this.matDialog.open(SkillComponent, {width: '400px', minHeight: '150px'});
+  }
+
+  openProjects(){
+    this.matDialog.open(ProjectsComponent, {width: '400px', minHeight: '150px'});
   }
 }

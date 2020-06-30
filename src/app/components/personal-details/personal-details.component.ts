@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonalDetails } from 'src/app/classes/PersonalDetails';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
-import { MatDialogRef } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { EducationComponent } from '../education/education.component';
+
 
 @Component({
   selector: 'app-personal-details',
@@ -15,7 +16,7 @@ export class PersonalDetailsComponent implements OnInit {
   selectedFile = null;
   personalDetailsClass: PersonalDetails;
 
-  constructor(private http: HttpClient, private dataTransferService: DataTransferService, private matDialogRef: MatDialogRef<PersonalDetails>) { }
+  constructor(private matDialog: MatDialog, private dataTransferService: DataTransferService, private matDialogRef: MatDialogRef<PersonalDetails>) { }
 
   ngOnInit(): void {
     this.personalDetailsClass = new PersonalDetails();
@@ -57,9 +58,10 @@ export class PersonalDetailsComponent implements OnInit {
     this.selectedFile = true;
 }
 
-  onUpload(){
-    //this.http.post('')
-    
-  }
+openEducation(){
+  // this.matDialogRef.close();
+  console.log('Opening dialog education ');
+  this.matDialog.open(EducationComponent, {width: '400px', minHeight: '150px'});
+}
 
 }

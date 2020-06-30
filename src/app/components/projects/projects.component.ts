@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { ProjectDetails } from 'src/app/classes/ProjectDetails';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { InternshipComponent } from '../internship/internship.component';
+import { AchievementComponent } from '../achievement/achievement.component';
 
 @Component({
   selector: 'app-projects',
@@ -14,7 +16,7 @@ export class ProjectsComponent implements OnInit {
   form: FormGroup;
   projectsArray: ProjectDetails[];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<ProjectsComponent>, private dataTransferService: DataTransferService) { }
+  constructor(private fb: FormBuilder,private matDialog: MatDialog, public dialogRef: MatDialogRef<ProjectsComponent>, private dataTransferService: DataTransferService) { }
   
 
   ngOnInit(): void {
@@ -62,5 +64,13 @@ export class ProjectsComponent implements OnInit {
       title: '',
       description: '',
     });
+  }
+
+  openInternship(){
+    this.matDialog.open(InternshipComponent, {width: '400px', minHeight: '150px'});
+  }
+
+  openAchievement(){
+    this.matDialog.open(AchievementComponent, {width: '400px', minHeight: '150px'});
   }
 }
