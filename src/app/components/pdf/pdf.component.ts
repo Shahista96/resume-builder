@@ -17,6 +17,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class PDFComponent implements OnInit {
 
 
+
+
   imageEvent;
   url;
   details: string[];
@@ -28,21 +30,15 @@ export class PDFComponent implements OnInit {
   documentDefinition: any;
 
 
-  constructor(private dataTransferService: DataTransferService, 
-
-    private matDialogRef: MatDialogRef<PDFComponent>) { }
+  constructor(private dataTransferService: DataTransferService,
+              private matDialogRef: MatDialogRef<PDFComponent>) { }
 
   ngOnInit(): void {
-    // this.getUpdatedValues();
-    // this.initializeDocumentDefinition();
-    // this.addPersonalDetailsToPDF();
-    // this.addQualificationDetailsToPDF();
-    // this.addWorkExperienceDetailsToPDF();
+
   }
 
   getUpdatedValues() {
     this.dataTransferService.personalInfoObserver.subscribe((data) => {
-      // this.personalDetails = data;
       console.log('Updated Personal Details', this.personalDetails);
     });
 

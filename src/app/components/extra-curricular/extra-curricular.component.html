@@ -20,8 +20,15 @@
             </div>
         </div>
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <button mat-raised-button class="btn-success">Save</button>
-        <button mat-raised-button class="btn-danger" (click)="close()">Close</button>
-    </mat-dialog-actions>
 </form>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button (click)="openCourse()" style="margin-right: 10px;" color="accent">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+      </button>
+    <button style="margin-right: 10px;" class="btn btn-success" (click)="submit()">Save</button>
+    <button style="margin-right: 10px;" class="btn btn-danger" (click)="close()">Close</button>
+    <button mat-raised-button (click)="openTraining()" color="accent">
+        <i class="glyphicon glyphicon-arrow-right"></i>
+      </button>
+</mat-dialog-actions>

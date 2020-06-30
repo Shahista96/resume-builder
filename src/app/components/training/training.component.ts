@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { TrainingDetails } from 'src/app/classes/TrainingDetails';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { ExtraCurricularComponent } from '../extra-curricular/extra-curricular.component';
+import { PDFComponent } from '../pdf/pdf.component';
 
 @Component({
   selector: 'app-training',
@@ -14,7 +16,7 @@ export class TrainingComponent implements OnInit {
   form: FormGroup;
   trainingArray: TrainingDetails[];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<TrainingComponent>, private dataTransferService: DataTransferService) { }
+  constructor(private fb: FormBuilder,private matDialog: MatDialog, public dialogRef: MatDialogRef<TrainingComponent>, private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -52,7 +54,6 @@ export class TrainingComponent implements OnInit {
     this.dataTransferService.trainingForm = this.form;
     this.trainingArray = this.form.value.trainings;
     this.dataTransferService.trainingDetails = this.trainingArray;
-    this.dialogRef.close();
   }
 
   createItem(): FormGroup {
@@ -60,5 +61,13 @@ export class TrainingComponent implements OnInit {
       title: '',
       description: '',
     });
+  }
+
+  openExtraCurricular(){
+    this.matDialog.open(ExtraCurricularComponent, {width: '400px', minHeight: '150px'});
+  }
+
+  openDownloadPDF(){
+    this.matDialog.open(PDFComponent, {width: '400px', minHeight: '150px', maxHeight: '300px'});
   }
 }

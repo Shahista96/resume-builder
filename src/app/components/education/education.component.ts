@@ -60,12 +60,10 @@ export class EducationComponent implements OnInit {
   }
 
   submit() {
-    alert('Submit Education Triggered');
     this.dataTransferService.educationForm = this.form;
     this.educationArray = this.form.value.education;
     this.dataTransferService.qualificationDetails = this.educationArray;
     console.log('Education Details are ', this.educationArray);
-    this.dialogRef.close();
   }
 
   createItem(): FormGroup {
@@ -80,9 +78,11 @@ export class EducationComponent implements OnInit {
 
   openWorkExperience() {
     this.matDialog.open(WorkExperienceComponent, { width: '400px', minHeight: '150px' });
+    this.close();
   }
 
   openPersonalDetails() {
     this.matDialog.open(PersonalDetailsComponent, { width: '400px', minHeight: '150px' });
+    this.close();
   }
 }

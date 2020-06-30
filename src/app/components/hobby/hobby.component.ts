@@ -51,14 +51,15 @@ export class HobbyComponent implements OnInit {
   submit() {
     this.hobbiesArray = this.hobbyForm.value.hobbies;
     this.dataTransferService.hobbyDetails = this.hobbiesArray;
-    this.dialogRef.close();
   }
 
   openInternship(){
     this.matDialog.open(InternshipComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 
   openWorkExperience(){
     this.matDialog.open(WorkExperienceComponent, {width: '400px', minHeight: '150px'});
+    this.close();
 }
 }

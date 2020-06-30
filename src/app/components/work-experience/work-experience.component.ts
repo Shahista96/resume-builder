@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { QualificationDetails } from 'src/app/classes/QualificationDetails';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { WorkExperience } from 'src/app/classes/WorkExperience';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
 import { EducationComponent } from '../education/education.component';
 import { HobbyComponent } from '../hobby/hobby.component';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-work-experience',
@@ -14,6 +15,7 @@ import { HobbyComponent } from '../hobby/hobby.component';
 })
 export class WorkExperienceComponent implements OnInit {
 
+  disableSubmit = true;
   form: FormGroup;
   experience: WorkExperience[];
   totalWorkExperience;
@@ -23,6 +25,7 @@ export class WorkExperienceComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    this.form.valueChanges.subscribe((data) => this.disableSubmit = !(this.form.valid));
   }
 
   close() {
@@ -32,6 +35,7 @@ export class WorkExperienceComponent implements OnInit {
   createForm() {
     if (this.dataTransferService.workExperienceForm) {
       this.form = this.dataTransferService.workExperienceForm;
+      this.totalWorkExperience = this.dataTransferService.totalWorkExperience;
     } else {
       this.form = this.fb.group({
         experienceControl: this.fb.array([])
@@ -57,24 +61,22 @@ export class WorkExperienceComponent implements OnInit {
     this.dataTransferService.totalWorkExperience = this.totalWorkExperience;
     this.dataTransferService.workExperienceForm = this.form;
     this.experience = this.form.value.experienceControl;
-    console.log('Education Details are ', this.experience);
     this.dataTransferService.workExperienceDetails = this.experience;
-    this.dialogRef.close();
   }
 
   initResponsibilities() {
     return new FormGroup({
-      responsibility: new FormControl('')
+      responsibility: new FormControl('', [Validators.required, Validators.minLength(1)])
     });
   }
 
   createItem(): FormGroup {
     return this.fb.group({
-      designation: '',
-      organizationName: '',
-      fromDate: '',
-      toDate: '',
-      jobDescription: '',
+      designation: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+      organizationName: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+      fromDate: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+      toDate: this.fb.control('', [Validators.required, Validators.minLength(1)]),
+      jobDescription: this.fb.control('', [Validators.required, Validators.minLength(1)]),
       responsibilities: new FormArray([
         this.initResponsibilities()
       ])
@@ -99,10 +101,12 @@ export class WorkExperienceComponent implements OnInit {
 
   openEducation(){
     this.matDialog.open(EducationComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 
   openHobby(){
     this.matDialog.open(HobbyComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 
 }

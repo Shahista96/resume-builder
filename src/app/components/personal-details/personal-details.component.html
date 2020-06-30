@@ -43,12 +43,11 @@
 
     <!-- <input type='file' (change)="onSelectFile($event)"> -->
 </mat-dialog-content>
-
+</form>
 <mat-dialog-actions align="end">
-  <button style="margin-right: 10px;" class="btn btn-success" type="submit">Save</button>
+  <button style="margin-right: 10px;" class="btn btn-success" (click)="submit()">Save</button>
     <button class="btn btn-danger" (click)="close()">Close</button>
     <button (click)="openEducation()" mat-raised-button color="accent">
       <i class="glyphicon glyphicon-arrow-right"></i>
     </button>
 </mat-dialog-actions>
-</form>

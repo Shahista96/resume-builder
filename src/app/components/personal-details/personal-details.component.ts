@@ -62,8 +62,8 @@ export class PersonalDetailsComponent implements OnInit {
 
 openEducation(){
   // this.matDialogRef.close();
-  console.log('Opening dialog education ');
   this.matDialog.open(EducationComponent, {width: '400px', minHeight: '150px'});
+  this.close();
 }
 
 }

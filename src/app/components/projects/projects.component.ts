@@ -56,7 +56,6 @@ export class ProjectsComponent implements OnInit {
     this.dataTransferService.projectDetails = this.projectsArray;
     this.dataTransferService.projectForm = this.form;
     console.log('Projects are - > ', this.projectsArray);
-    this.dialogRef.close();
   }
 
   createItem(): FormGroup {
@@ -68,9 +67,11 @@ export class ProjectsComponent implements OnInit {
 
   openInternship(){
     this.matDialog.open(InternshipComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 
   openAchievement(){
     this.matDialog.open(AchievementComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 }

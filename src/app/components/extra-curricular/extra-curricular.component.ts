@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { CourseComponent } from '../course/course.component';
+import { TrainingComponent } from '../training/training.component';
 
 @Component({
   selector: 'app-extra-curricular',
@@ -14,7 +16,7 @@ export class ExtraCurricularComponent implements OnInit {
   activitiesArray: Array<string> = [];
 
   // tslint:disable-next-line: max-line-length
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<ExtraCurricularComponent>, private dataTransferService: DataTransferService) { }
+  constructor(private fb: FormBuilder, private matDialog: MatDialog, public dialogRef: MatDialogRef<ExtraCurricularComponent>, private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -52,6 +54,16 @@ export class ExtraCurricularComponent implements OnInit {
     this.dataTransferService.activitiesForm = this.form;
     this.activitiesArray = this.form.value.activities;
     this.dataTransferService.activityDetails = this.activitiesArray;
-    this.dialogRef.close();
   }
+
+  openCourse(){
+    this.matDialog.open(CourseComponent, {width: '400px', minHeight: '150px'});
+    this.close();
+  }
+
+  openTraining(){
+    this.matDialog.open(TrainingComponent, {width: '400px', minHeight: '150px'});
+    this.close();
+  }
+
 }

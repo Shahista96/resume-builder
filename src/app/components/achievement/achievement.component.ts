@@ -55,14 +55,15 @@ export class AchievementComponent implements OnInit {
     this.achievementsArray = this.form.value.achievements;
     this.dataTransferService.achievementDetails = this.achievementsArray;
     console.log('Achievements are - > ', this.achievementsArray);
-    this.dialogRef.close();
   }
 
   openSkill(){
     this.matDialog.open(SkillComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 
   openProjects(){
     this.matDialog.open(ProjectsComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 }

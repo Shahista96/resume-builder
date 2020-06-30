@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { SkillComponent } from '../skill/skill.component';
+import { ExtraCurricularComponent } from '../extra-curricular/extra-curricular.component';
 
 @Component({
   selector: 'app-course',
@@ -13,7 +15,8 @@ export class CourseComponent implements OnInit {
   courseForm: FormGroup;
   coursesArray: Array<string> = [];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<CourseComponent>, private dataTransferService: DataTransferService) { }
+  constructor(private fb: FormBuilder, private matDialog: MatDialog,
+              public dialogRef: MatDialogRef<CourseComponent>, private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -24,7 +27,7 @@ export class CourseComponent implements OnInit {
   }
 
   createForm() {
-    if(this.dataTransferService.courseForm){
+    if (this.dataTransferService.courseForm){
       this.courseForm = this.dataTransferService.courseForm;
     }else{
       this.courseForm = this.fb.group({
@@ -51,6 +54,15 @@ export class CourseComponent implements OnInit {
     this.dataTransferService.courseForm = this.courseForm;
     this.dataTransferService.courses = this.courseForm.value.courses;
     console.log('Courses are :: ', this.coursesArray);
-    this.dialogRef.close();
+  }
+
+  openSkill(){
+    this.matDialog.open(SkillComponent, {width: '400px', minHeight: '150px'});
+    this.close();
+  }
+
+  openExtraCurricular(){
+    this.matDialog.open(ExtraCurricularComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 }

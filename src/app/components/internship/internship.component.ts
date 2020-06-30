@@ -56,7 +56,6 @@ export class InternshipComponent implements OnInit {
     this.internshipArray = this.form.value.internships;
     this.dataTransferService.intershipDetails = this.internshipArray;
     console.log('Internships are - > ', this.internshipArray);
-    this.dialogRef.close();
   }
 
   createItem(): FormGroup {
@@ -68,9 +67,11 @@ export class InternshipComponent implements OnInit {
 
   openHobby(){
     this.matDialog.open(HobbyComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 
   openProjects(){
     this.matDialog.open(ProjectsComponent, {width: '400px', minHeight: '150px'});
+    this.close();
   }
 }
