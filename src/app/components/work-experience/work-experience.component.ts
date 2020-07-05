@@ -41,6 +41,7 @@ export class WorkExperienceComponent implements OnInit {
         experienceControl: this.fb.array([])
       });
       this.addWorkExperience();
+      this.addResponsibility(0);
     }
   }
 
@@ -50,6 +51,7 @@ export class WorkExperienceComponent implements OnInit {
 
   addWorkExperience() {
     (this.form.get('experienceControl') as FormArray).push(this.createItem());
+    // this.addResponsibility(0);
     console.log('Form is ** ', this.form);
   }
 
@@ -58,10 +60,12 @@ export class WorkExperienceComponent implements OnInit {
   }
 
   submit() {
+   
     this.dataTransferService.totalWorkExperience = this.totalWorkExperience;
     this.dataTransferService.workExperienceForm = this.form;
     this.experience = this.form.value.experienceControl;
     this.dataTransferService.workExperienceDetails = this.experience;
+    console.log('Work Ex Details : ',this.experience);
   }
 
   initResponsibilities() {
@@ -78,13 +82,13 @@ export class WorkExperienceComponent implements OnInit {
       toDate: this.fb.control('', [Validators.required, Validators.minLength(1)]),
       jobDescription: this.fb.control('', [Validators.required, Validators.minLength(1)]),
       responsibilities: new FormArray([
-        this.initResponsibilities()
-      ])
+      ],[Validators.required])
     });
+    
   }
 
   addResponsibility(i: number): void {
-    ((this.form.get('experienceControl') as FormArray).controls[i].get('responsibilities') as FormArray).push(this.initResponsibilities());
+    ((this.form.get('experienceControl') as FormArray).controls[i].get('responsibilities') as FormArray).push(this.fb.control(''));
     console.log('After Adding Form Value is ** ', this.form);
   }
 

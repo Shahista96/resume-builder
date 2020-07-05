@@ -130,7 +130,7 @@ export class PDFComponent implements OnInit {
       const details = [];
       details.push(elem.designation + ' @' + elem.organizationName + ', ' + elem.fromDate + ' to ' + elem.toDate);
       details.push(elem.jobDescription);
-      details.push(this.getResponsibilitiesArrayToString(elem.responsibilities));
+      //details.push(this.getResponsibilitiesArrayToString(elem.responsibilities));
 
       if (count === 0) {
         this.documentDefinition.content.push(
@@ -151,17 +151,19 @@ export class PDFComponent implements OnInit {
                   text: details[0],
                   bold: true
                 },
+                '\n',
                 details[1],
+                '\n',
                 {
-                  text: 'Responsibilities: ',
-                  bold: true
+                  text: 'Responsibilities',
+                 
                 },
-                details[2],
-                '\n'
               ]
             ]
           }
         );
+
+        this.addUnorderedListContentToPDF(elem.responsibilities, '');
       } else {
         this.documentDefinition.content.push(
           {
@@ -175,17 +177,18 @@ export class PDFComponent implements OnInit {
                   text: details[0],
                   bold: true
                 },
+                '\n',
                 details[1],
+                '\n',
                 {
                   text: 'Responsibilities: ',
-                  bold: true
+                
                 },
-                details[2],
-                '\n'
               ]
             ]
           }
         );
+        this.addUnorderedListContentToPDF(elem.responsibilities, '');
       }
       count++;
     }
@@ -249,7 +252,6 @@ export class PDFComponent implements OnInit {
           }
         );
       }
-
       count++;
     }
     );
@@ -414,9 +416,15 @@ export class PDFComponent implements OnInit {
     }
     );
 
-    this.documentDefinition.content.push(
-      ['\n', { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
-    );
+
+    if(title != ''){
+      this.documentDefinition.content.push(
+        ['\n', { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
+      );
+    }else{
+      this.documentDefinition.content.push(['\n']);
+    }
+    
   }
 
   generatePdf() {

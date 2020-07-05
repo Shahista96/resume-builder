@@ -41,10 +41,10 @@
                     <div class="form-group" formArrayName="responsibilities">
                         <div class="input-group" *ngFor="let res of item.get('responsibilities').controls; let j=index;"
                             style="width:100%">
-                            <div [formGroupName]="j">
+                            <div>
                                 <div class="input-group" style="width: 100%;">
                                     <input type="text" class="form-control" placeholder="Responsibility"
-                                        formControlName="responsibility">
+                                        [formControlName]="j">
                                     <span title="Add" (click)="addResponsibility(i)"
                                         class="input-group-addon glyphicon glyphicon-plus"></span>
                                     <span title="Remove" (click)="removeResponsibility(i,j)"
