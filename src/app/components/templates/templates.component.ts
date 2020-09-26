@@ -10,12 +10,14 @@ import { TEMPLATES, Template } from '../../classes/template';
 })
 export class TemplatesComponent implements OnInit {
 
-  templates
+  templates;
+  previewImage;
 
   constructor(public dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
     this.templates = TEMPLATES;
+    this.previewImage = this.templates[0];
   }
 
 
@@ -24,6 +26,7 @@ export class TemplatesComponent implements OnInit {
       this.templates.forEach(element => {
         if(element.templateId == template.templateId){
           element.selected = !template.selected;
+          this.previewImage = template;
           return;
         }
       });

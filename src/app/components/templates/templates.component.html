@@ -1,19 +1,13 @@
-<div style="height: 100%;overflow-y: auto;">
-  <!-- <div style="height: 95%;overflow-y: auto;float:left"> -->
-    <div style="width: 100%;">
-
-      <div class="row">
-        <div class="col-lg-12">
-     
-          <img *ngFor="let template of this.templates" mat-card-image src="{{template.templateURL}}" class="btn btn-squared-default-plain" [class]="template.selected ? 'selected':'none'" (click)="toggleSelection(template)">
-      
-           
-            
-          
-
-        </div>
-    
+<div style=" display: inline;">
+  <div style="width: 55%; float: left">
+    <div class="row">
+      <div class="col-lg-12">
+        <img *ngFor="let template of this.templates" mat-card-image src="{{template.templateURL}}" class="btn btn-squared-default-plain"
+          [class]="template.selected ? 'selected':'none'" (click)="toggleSelection(template)" [title]="template.selected ? 'Click to Deselect Template':'Click to Select Template'">
+      </div>
     </div>
-
   </div>
+  <div style="width: 45%;float: left">
+    <img mat-card-image src="{{previewImage.templateURL}}" class="btn preview-image" title="Template Preview">
+</div>
 </div>
