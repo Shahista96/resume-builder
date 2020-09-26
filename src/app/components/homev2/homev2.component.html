@@ -1,116 +1,127 @@
-<div style="height: 600px;overflow-y: auto;">
-    <div class="container text-center">
-        <p class="h3">Create your Resume, Build your Future</p>
-        <p class="h5">You attract people by the qualities you display. You keep them by the qualities you possess.</p>
-        <br />
+<div style="display: inline;">
+    <div style="height: 95%;overflow-y: auto; float: left;width: 60%">
+        <app-templates></app-templates>
+    </div>
+    <div>
+        <div style="height: 95%;overflow-y: auto; width: 40%;float:left">
+            <div>
+                <p class="h3">Create your Resume, Build your Future</p>
+                <p class="h5">You attract people by the qualities you display. You keep them by the qualities you possess.</p>
+                <br />
+                </div>
+                <div style="width: 95%;">
+                  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>
+                                    <li (click)="openPersonalDetails()" class="btn btn-squared-default-plain btn-primary">
+                                        <i class="material-icons">&#xe55a;</i>
+                                        <br />
+                                        <br />
+                                        Personal
+                                        <br />
+                                       Info
+                                    </li>
+                                    <li (click)="openEducation()" class="btn btn-squared-default-plain btn-success">
+                                        <i class='fas fa-graduation-cap'></i>
+                                        <br />
+                                        <br />
+                                        Educational
+                                        <br />
+                                        Details
+                                    </li>
+                                    <li (click)="openWorkExperience()" class="btn btn-squared-default-plain btn-warning">
+                                        <i class="material-icons">&#xeb3f;</i>
+                                        <br />
+                                        <br />
+                                       Work
+                                        <br />
+                                        Experience
+                                    </li>
+                                    <li (click)="openHobby()" class="btn btn-squared-default-plain btn-danger">
+                                        <i class='fas'>&#xf7a6;</i>
+                                        <br />
+                                        <br />
+                                        Hobbies
+                                    </li>
+                                </p>
+                            </div>
+                        </div>
+                
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>
+                                    <li (click)="openInternship()" class="btn btn-squared-default-plain btn-danger">
+                                        <i class='fas'>&#xf108;</i>
+                                        <br />
+                                        <br />
+                                        Internships
+                                    </li>
+                                    <li (click)="openProjects()" class="btn btn-squared-default-plain btn-warning">
+                                        <!-- <i class="fa fa-android fa-5x"></i> -->
+                                        <i class='far'>&#xf15c;</i>
+                                        <br />
+                                        <br />
+                                        Projects/
+                                        <br />
+                                        Research Papers
+                                    </li>
+                                    <li (click)="openAchievement()" class="btn btn-squared-default-plain btn-success">
+                                        <i class='fas'>&#xf091;</i>
+                                        <br />
+                                        <br />
+                                        Achievements
+                                    </li>
+                                    <li (click)="openSkill()" class="btn btn-squared-default-plain btn-primary">
+                                        <i class="fa fa-android fa-5x"></i>
+                                        <br />
+                                        <br />
+                                        Skills
+                                    </li>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>
+                                    <li (click)="openCourse()" class="btn btn-squared-default-plain btn-primary">
+                                        <i class='fas'>&#xf501;</i>
+                                        <br />
+                                       
+                                        <br />
+                                      Courses
+                                    </li>
+                                    <li (click)="openExtraCurricular()" class="btn btn-squared-default-plain btn-success">
+                                        <i class='fas'>&#xf1e3;</i>
+                                        <br />
+                                        <br />
+                                        Co/Extra-Curricular
+                                        <br />
+                                        Activites
+                                    </li>
+                                    <li (click)="openTraining()" class="btn btn-squared-default-plain btn-warning">
+                                        <i class='fas'>&#xf51c;</i>
+                                        <br />
+                                     <br />
+                                     Trainings
+                                    </li>
+                                    <li (click)="openDownloadPDF()" class="btn btn-squared-default-plain btn-danger">
+                                        <i class="glyphicon">&#xe025;</i>
+                                        <br />
+                                        <br />
+                                        Download 
+                                     <br />
+                                     PDF
+                                    </li>
+                                </p>
+                            </div>
+                    </div>
+                </div>
         </div>
-        <div style="width: 100%;">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>
-                            <li (click)="openPersonalDetails()" class="btn btn-squared-default-plain btn-primary">
-                                <i class="material-icons">&#xe55a;</i>
-                                <br />
-                                <br />
-                                Personal
-                                <br />
-                               Info
-                            </li>
-                            <li (click)="openEducation()" class="btn btn-squared-default-plain btn-success">
-                                <i class='fas fa-graduation-cap'></i>
-                                <br />
-                                <br />
-                                Educational
-                                <br />
-                                Details
-                            </li>
-                            <li (click)="openWorkExperience()" class="btn btn-squared-default-plain btn-warning">
-                                <i class="material-icons">&#xeb3f;</i>
-                                <br />
-                                <br />
-                               Work
-                                <br />
-                                Experience
-                            </li>
-                            <li (click)="openHobby()" class="btn btn-squared-default-plain btn-danger">
-                                <i class='fas'>&#xf7a6;</i>
-                                <br />
-                                <br />
-                                Hobbies
-                            </li>
-                        </p>
-                    </div>
-                </div>
-        
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>
-                            <li (click)="openInternship()" class="btn btn-squared-default-plain btn-danger">
-                                <i class='fas'>&#xf108;</i>
-                                <br />
-                                <br />
-                                Internships
-                            </li>
-                            <li (click)="openProjects()" class="btn btn-squared-default-plain btn-warning">
-                                <!-- <i class="fa fa-android fa-5x"></i> -->
-                                <i class='far'>&#xf15c;</i>
-                                <br />
-                                <br />
-                                Projects/
-                                <br />
-                                Research Papers
-                            </li>
-                            <li (click)="openAchievement()" class="btn btn-squared-default-plain btn-success">
-                                <i class='fas'>&#xf091;</i>
-                                <br />
-                                <br />
-                                Achievements
-                            </li>
-                            <li (click)="openSkill()" class="btn btn-squared-default-plain btn-primary">
-                                <i class="fa fa-android fa-5x"></i>
-                                <br />
-                                <br />
-                                Skills
-                            </li>
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>
-                            <li (click)="openCourse()" class="btn btn-squared-default-plain btn-primary">
-                                <i class='fas'>&#xf501;</i>
-                                <br />
-                               
-                                <br />
-                              Courses
-                            </li>
-                            <li (click)="openExtraCurricular()" class="btn btn-squared-default-plain btn-success">
-                                <i class='fas'>&#xf1e3;</i>
-                                <br />
-                                <br />
-                                Co/Extra-Curricular
-                                <br />
-                                Activites
-                            </li>
-                            <li (click)="openTraining()" class="btn btn-squared-default-plain btn-warning">
-                                <i class='fas'>&#xf51c;</i>
-                                <br />
-                             <br />
-                             Trainings
-                            </li>
-                            <li (click)="openDownloadPDF()" class="btn btn-squared-default-plain btn-danger">
-                                <i class="glyphicon">&#xe025;</i>
-                                <br />
-                                <br />
-                                Download 
-                             <br />
-                             PDF
-                            </li>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    </div>
 </div>
+
+
+
+

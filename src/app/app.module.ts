@@ -12,6 +12,12 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  AmazonLoginProvider,
+} from 'angularx-social-login';
 
 
 import 'hammerjs';
@@ -38,6 +44,7 @@ import { Homev2Component } from './components/homev2/homev2.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TemplatesComponent } from './components/templates/templates.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -59,7 +66,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CourseComponent,
     Homev2Component,
     FooterComponent,
-    TemplatesComponent
+    TemplatesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +87,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSlideToggleModule,
     HttpClientModule,
     MatButtonToggleModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    SocialLoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

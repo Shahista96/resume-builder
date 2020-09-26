@@ -1,0 +1,10 @@
+<div *ngIf="user">
+    <div>
+        <h4>{{ user.name }}</h4>
+        <p>{{ user.email }}</p>
+      </div>    
+</div>
+
+<button (click)="signInWithFB()">FB</button>
+
+<button (click)="signInWithGoogle()">Google</button>

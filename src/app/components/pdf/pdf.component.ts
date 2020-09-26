@@ -31,7 +31,7 @@ export class PDFComponent implements OnInit {
 
 
   constructor(private dataTransferService: DataTransferService,
-              private matDialogRef: MatDialogRef<PDFComponent>) { }
+    private matDialogRef: MatDialogRef<PDFComponent>) { }
 
   ngOnInit(): void {
 
@@ -90,30 +90,8 @@ export class PDFComponent implements OnInit {
     };
   }
 
-  generateDocumentDefinition11() {
-    const documentDefinition = {
-      content: [
-        {
-          text: 'This is a header (whole paragraph uses the same header style)\n\n',
-          style: 'header'
-        },
-        {
-          text: [
-            'It is however possible to provide an array of texts ',
-            'to the paragraph (instead of a single string) and have ',
-            { text: 'a better ', fontSize: 15, bold: true },
-            'control over it. \nEach inline can be ',
-            { text: 'styled ', fontSize: 20 },
-            { text: 'independently ', italics: true, fontSize: 40 },
-            'then.\n\n'
-          ]
-        },
-      ]
-    };
-    return documentDefinition;
-  }
-
-  getResponsibilitiesArrayToString(arr){
+  
+  getResponsibilitiesArrayToString(arr) {
     let str = '';
     arr.forEach(element => {
       str = str + '* ' + element.responsibility + '\n';
@@ -156,7 +134,6 @@ export class PDFComponent implements OnInit {
                 '\n',
                 {
                   text: 'Responsibilities',
-                 
                 },
               ]
             ]
@@ -182,7 +159,7 @@ export class PDFComponent implements OnInit {
                 '\n',
                 {
                   text: 'Responsibilities: ',
-                
+
                 },
               ]
             ]
@@ -353,11 +330,11 @@ export class PDFComponent implements OnInit {
           ],
           [
             {
-            image: this.url,
-            alignment: 'right',
-            fit: [100, 100]
-          },
-          '\n'
+              image: this.url,
+              alignment: 'right',
+              fit: [100, 100]
+            },
+            '\n'
           ]
         ]
       }
@@ -417,67 +394,114 @@ export class PDFComponent implements OnInit {
     );
 
 
-    if(title != ''){
+    if (title != '') {
       this.documentDefinition.content.push(
         ['\n', { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
       );
-    }else{
+    } else {
       this.documentDefinition.content.push(['\n']);
     }
-    
+
   }
 
-  generatePdf() {
+  setDetailsFromService() {
     this.personalDetails = this.dataTransferService.personalDetails;
     this.qualifications = this.dataTransferService.qualificationDetails;
     this.workExperience = this.dataTransferService.workExperienceDetails;
     this.hobbies = this.dataTransferService.hobbyDetails;
     this.courses = this.dataTransferService.courses;
-    console.log('Generating PDF - ', this.personalDetails);
+  }
+
+  generatePDF(){
+    this.setDetailsFromService();
     this.initializeDocumentDefinition();
-    if (this.dataTransferService.imageDetails){
+    this.generatePdfTemplate2();
+    pdfMake.createPdf(this.documentDefinition).open();
+  }
+
+  generatePdfTemplate2(){
+    this.addPersonalDetailsToPDF();
+    if (this.dataTransferService.projectDetails.length > 0) {
+      this.addOtherDetailsToPDFTemplate2(this.dataTransferService.projectDetails, 'Projects');
+    }
+
+    if (this.dataTransferService.intershipDetails.length > 0) {
+      this.addOtherDetailsToPDFTemplate2(this.dataTransferService.intershipDetails, 'Internships');
+    }
+
+    if (this.dataTransferService.trainingDetails.length > 0) {
+      this.addOtherDetailsToPDFTemplate2(this.dataTransferService.trainingDetails, 'Trainings/Workshops');
+    }
+
+    if (this.dataTransferService.skillDetails.length > 0) {
+      this.addUnorderedListContentToPDFTemplate2(this.dataTransferService.skillDetails, 'Skills/Technologies');
+    }
+
+    if (this.courses.length > 0) {
+      this.addUnorderedListContentToPDFTemplate2(this.courses, 'Courses/Certifications');
+    }
+
+    if (this.dataTransferService.achievementDetails.length > 0) {
+      this.addUnorderedListContentToPDFTemplate2(this.dataTransferService.achievementDetails, 'Achievements');
+    }
+
+    if (this.dataTransferService.hobbyDetails.length > 0) {
+      this.addUnorderedListContentToPDFTemplate2(this.dataTransferService.hobbyDetails, 'Hobbies');
+    }
+
+    if (this.dataTransferService.activityDetails.length > 0) {
+      this.addUnorderedListContentToPDFTemplate2(this.dataTransferService.activityDetails, 'Extra Curricular Activities');
+    }
+  }
+
+  //Template 1
+  generatePdfTemplate1() {
+   
+    console.log('Generating PDF - ', this.personalDetails);
+   
+    if (this.dataTransferService.imageDetails) {
       this.addPhotoToPDF();
-    }else{
+    } else {
       this.addPersonalDetailsToPDF();
     }
 
-    if (this.workExperience.length > 0){
+    if (this.workExperience.length > 0) {
       this.addWorkExperienceDetailsToPDF();
     }
 
-    if (this.qualifications.length > 0){
+    if (this.qualifications.length > 0) {
       this.addQualificationDetailsToPDF();
     }
 
-    if (this.dataTransferService.projectDetails.length > 0){
+    if (this.dataTransferService.projectDetails.length > 0) {
       this.addOtherDetailsToPDF(this.dataTransferService.projectDetails, 'Projects');
     }
 
-    if (this.dataTransferService.intershipDetails.length > 0){
+    if (this.dataTransferService.intershipDetails.length > 0) {
       this.addOtherDetailsToPDF(this.dataTransferService.intershipDetails, 'Internships');
     }
 
-    if (this.dataTransferService.trainingDetails.length > 0){
-      this.addOtherDetailsToPDF(this.dataTransferService.trainingDetails, 'Trainings');
+    if (this.dataTransferService.trainingDetails.length > 0) {
+      this.addOtherDetailsToPDF(this.dataTransferService.trainingDetails, 'Trainings/Workshops');
     }
 
-    if (this.courses.length > 0){
+    if (this.dataTransferService.skillDetails.length > 0) {
+      this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Technologies');
+    }
+
+    if (this.courses.length > 0) {
       this.addUnorderedListContentToPDF(this.courses, 'Courses/Certifications');
     }
 
-    if (this.dataTransferService.skillDetails.length > 0){
-      this.addUnorderedListContentToPDF(this.dataTransferService.skillDetails, 'Skills/Expertise');
-    }
-
-    if (this.dataTransferService.achievementDetails.length > 0){
+    if (this.dataTransferService.achievementDetails.length > 0) {
       this.addUnorderedListContentToPDF(this.dataTransferService.achievementDetails, 'Achievements');
     }
 
-    if (this.dataTransferService.hobbyDetails.length > 0){
+    if (this.dataTransferService.hobbyDetails.length > 0) {
       this.addUnorderedListContentToPDF(this.dataTransferService.hobbyDetails, 'Hobbies');
     }
 
-    if (this.dataTransferService.activityDetails.length > 0){
+    if (this.dataTransferService.activityDetails.length > 0) {
       this.addUnorderedListContentToPDF(this.dataTransferService.activityDetails, 'Extra Curricular Activities');
     }
 
@@ -488,4 +512,101 @@ export class PDFComponent implements OnInit {
     this.matDialogRef.close();
   }
 
+  addUnorderedListContentToPDFTemplate2(obj: string[], title: string) {
+  
+    this.documentDefinition.content.push([
+      {
+        text: title,
+        bold: true
+      }
+    ])
+    obj.forEach((elem) => {
+        this.documentDefinition.content.push(
+          {
+            ul: [
+              elem
+            ]
+          }
+        );
+      } 
+    );
+    this.documentDefinition.content.push(
+      ['\n', { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
+    );  
+  }
+
+  addWorkExperienceDetailsToPDFTemplate2(obj, title: string) {
+  
+    this.documentDefinition.content.push([
+      {
+        text: title,
+        bold: true
+      },
+      '\n',
+    ])
+    obj.forEach((elem) => {
+        this.documentDefinition.content.push(
+         [
+           {
+             text: elem.designation + ' @' + elem.organizationName + ', ' + elem.fromDate + ' to ' + elem.toDate,
+             bold: true
+           },
+           '\n',
+           elem.description
+         ]
+        );
+      } 
+    );
+    this.documentDefinition.content.push(
+      ['\n', { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
+    );  
+  }
+
+  addOtherDetailsToPDFTemplate2(obj, title: string) {
+  
+    this.documentDefinition.content.push([
+      {
+        text: title,
+        bold: true
+      }
+    ])
+    obj.forEach((elem) => {
+        this.documentDefinition.content.push(
+          [
+            '\n',
+            elem.title,
+            elem.description
+          ]
+        );
+      } 
+    );
+    this.documentDefinition.content.push(
+      ['\n', { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
+    );  
+  }
+
+  addEducationDetailsToPDFTemplate2(obj){
+    this.documentDefinition.content.push([
+      {
+        text: 'Qualification Details',
+        bold: true
+      }
+    ])
+    obj.forEach((elem) => {
+        this.documentDefinition.content.push(
+          [
+            '\n',
+            elem.degree + ' (' + elem.fromDate + ' to ' + elem.toDate + ')',
+            elem.institute,
+            'Percentage : '+elem.grade
+          ]
+        );
+      } 
+    );
+    this.documentDefinition.content.push(
+      ['\n', { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 }] }, '\n']
+    );  
+  }
+
+ 
 }
