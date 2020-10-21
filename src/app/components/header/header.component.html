@@ -1,21 +1,30 @@
 
-
-<nav class="navbar navbar-dark bg-primary">
+<!-- 
+<nav class="navbar navbar-dark">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <p class="navbar-brand heading" style="color: #ac2925;font-weight: 20px;font-size: 30px;">RB</p>
-    </div>
-    <div class="navbar-header">
-      <p class="navbar-brand heading" style="color: white;">Resume Builder</p>
-    </div>
+    
     <ul class="nav navbar-nav">
-      <li class="active"><a routerLink='/home' style="color: white;background-color:#337ab7;">Create Resume</a></li>
-      <li class="active"><a routerLink='/home' style="color: white;background-color:#337ab7;">About</a></li>
-      <li class="active"><a routerLink='/home' style="color: white;background-color:#337ab7;">Contact Us</a></li>
-      <!-- <li><a routerLink='/selectTemplates' style="color: white;background-color:#337ab7;">Select Templates</a></li> -->
-      <!-- <li><a routerLink='/downloadResume' style="color: white;background-color:#337ab7;">Select Templates</a></li> -->
+        <li><a routerLink='/home' style="color: white;background-color:#337ab7;font-size: 25px">Home</a>
+      <li><a routerLink='/home' style="color: white;background-color:#337ab7;">About</a></li>
+      <li><a routerLink='/home' style="color: white;background-color:#337ab7;">Contact Us</a></li>
+    
     </ul>
   </div>
-</nav>
+</nav> -->
 
-<router-outlet></router-outlet>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+       <h3 class="header">Resume Builder</h3>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a routerLink='/home' >Home</a>
+      <li><a routerLink='/home'>About</a></li>
+      <li><a routerLink='/home'>Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <router-outlet></router-outlet>

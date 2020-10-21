@@ -1,0 +1,145 @@
+// $blue: #337ab7;
+// $yellow: #f0ad4e;
+
+
+// #overlay {
+//     position: fixed; /* Sit on top of the page content */
+//     display: none; /* Hidden by default */
+//     width: 100%; /* Full width (cover the whole page) */
+//     height: 100%; /* Full height (cover the whole page) */
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+//     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+//     cursor: pointer; /* Add a pointer on hover */
+//   }
+
+// img {
+//     display: block;
+//     margin-left: auto;
+//     margin-right: auto;
+//     margin-bottom: auto;
+//     margin-top: auto;
+//   }
+
+  // div{
+  //   background-color: rgb(189, 162, 9)
+  // }
+
+  // .grad {
+  //   background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+  // }
+
+
+#fullScreen{
+height: 100vh; 
+width: 100%;
+-webkit-background-size: cover;
+
+-moz-background-size: cover;
+
+-o-background-size: cover;
+
+background-size: cover;
+
+}
+
+#loginCard{
+  right: 15%;
+  padding: 0;
+  position: absolute;
+  top: 20%;
+  opacity: 0.7;
+}
+mat-card{
+  width: 400px;
+  height: 300px;
+  padding: 0px;
+  border-radius: 25px;
+}
+
+#login{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: whitesmoke;
+  font-size: 35px;
+  width: 100%;
+  background: rgb(37, 35, 35);
+  border-radius: 25px;
+  margin-bottom: 20px;
+  height: 60px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.loginButton{
+  font-family: 'Roboto', sans-serif;
+ 
+  color: whitesmoke;
+  
+  width: 30%;
+  background: rgb(37, 35, 35);
+  border-radius: 10px;
+ 
+  height: 35px;
+  text-align: center;
+}
+
+.loginButton:hover{
+  color: whitesmoke;
+  background: black;
+}
+
+
+
+mat-card-content{
+  padding:20px;
+  // opacity: 0.5;
+}
+
+mat-card-header{
+  // border-top-right-radius: 15px;
+  // border-top-left-radius: 15px;
+  // border: 2px solid black;
+  // opacity: 0.5;
+  background: rgb(37, 35, 35);
+  margin: 0;
+}
+mat-form-field{
+  width: 100%;
+}
+mat-card-title{
+  // font-family: 'Calibri';
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: whitesmoke;
+  font-size: 40px;
+  // display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+
+// #loginBackground{
+  
+//   height: 100vh; 
+//   width: 100%;
+// }
+
+.diamond {
+  height: 150px;
+  width: 150px;
+  background-color: #7FDBFF;
+  transform: rotate(45deg);
+}
+
+
+
+
+// #darkOcean{
+// background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+// }

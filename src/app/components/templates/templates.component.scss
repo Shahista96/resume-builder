@@ -1,20 +1,3 @@
-.example-card {
-    max-width: 200px;
-    max-height: 250px;
-  }
-  
-  // .example-header-image {
-  //   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  //   background-size: cover;
-  // }
-
-
-      .btn-squared-default:hover
-      {
-          border: 2px solid black;
-          font-weight: 800;
-          border-radius: 0px;
-      }
 
   .btn-squared-default-plain
   {
@@ -22,6 +5,7 @@
       height: 300px !important;
       font-size: 16px;
       border-radius: 0px;
+      opacity: 0.8;
   }
 
   .preview-image{
@@ -33,8 +17,9 @@
 
       .btn-squared-default-plain:hover
       {
-          border: 2px solid black;
+        //   border: 3px solid  rgb(59, 57, 57);
           border-radius: 0px;
+          opacity: 1
       }
 
       i{
@@ -42,8 +27,76 @@
       }
 
 .selected{
-  border: 2px solid blue;
+  border: 3px solid  rgb(37, 35, 35);
   border-radius: 0px;
 }
 
+.wrapper {
+    display: relative;
+    float: left;
+ }
+ 
+ .wrapper .material-icons {
+   position: absolute;
+   top: 10px;
+   left: 20px;
+   font-size: 40px;
+    color: black;
+ }
+
+ .icons{
+    
+   
+    font-size: 40px;
+    color: black;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .card-container {
+    display: inline-block;
+    position: relative;
+ }
+//  img {
+//     opacity: 1;
+//     display: block;
+//     transition: .5s ease;
+//     backface-visibility: hidden;
+//  }
+ .hoverText {
+    position: absolute;
+    top:0;
+    transition: .5s ease;
+    opacity: 0;
+ }
+
+ .hoverText2 {
+    position: absolute;
+    top:0;
+    transition: .5s ease;
+    opacity: 1;
+ }
+ .card-container:hover .hoverText {
+    opacity: 1;
+ }
+
+ 
+
+ .caption {
+   
+    color: black;
+    font-size: 30px;
+    padding-top:10%;
+ }
 

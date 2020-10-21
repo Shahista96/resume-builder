@@ -45,6 +45,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TemplatesComponent } from './components/templates/templates.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { LoginComponent } from './components/login/login.component';
+import { AuthenticatorService } from './authenticator.service';
 
 
 @NgModule({
@@ -90,7 +91,7 @@ import { LoginComponent } from './components/login/login.component';
     MatCheckboxModule,
     SocialLoginModule
   ],
-  providers: [],
+  providers: [AuthenticatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

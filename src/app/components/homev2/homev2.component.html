@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <p>
-                                    <li (click)="openPersonalDetails()" class="btn btn-squared-default-plain btn-primary">
+                                    <li (click)="openPersonalDetails()" class="btn btn-squared-default-plain btn-dark">
                                         <i class="material-icons">&#xe55a;</i>
                                         <br />
                                         <br />
@@ -22,7 +22,7 @@
                                         <br />
                                        Info
                                     </li>
-                                    <li (click)="openEducation()" class="btn btn-squared-default-plain btn-success">
+                                    <li (click)="openEducation()" class="btn btn-squared-default-plain btn-dark">
                                         <i class='fas fa-graduation-cap'></i>
                                         <br />
                                         <br />
@@ -30,7 +30,7 @@
                                         <br />
                                         Details
                                     </li>
-                                    <li (click)="openWorkExperience()" class="btn btn-squared-default-plain btn-warning">
+                                    <li (click)="openWorkExperience()" class="btn btn-squared-default-plain btn-dark">
                                         <i class="material-icons">&#xeb3f;</i>
                                         <br />
                                         <br />
@@ -38,7 +38,7 @@
                                         <br />
                                         Experience
                                     </li>
-                                    <li (click)="openHobby()" class="btn btn-squared-default-plain btn-danger">
+                                    <li (click)="openHobby()" class="btn btn-squared-default-plain btn-dark">
                                         <i class='fas'>&#xf7a6;</i>
                                         <br />
                                         <br />
@@ -51,13 +51,13 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <p>
-                                    <li (click)="openInternship()" class="btn btn-squared-default-plain btn-danger">
+                                    <li (click)="openInternship()" class="btn btn-squared-default-plain btn-dark">
                                         <i class='fas'>&#xf108;</i>
                                         <br />
                                         <br />
                                         Internships
                                     </li>
-                                    <li (click)="openProjects()" class="btn btn-squared-default-plain btn-warning">
+                                    <li (click)="openProjects()" class="btn btn-squared-default-plain btn-dark">
                                         <!-- <i class="fa fa-android fa-5x"></i> -->
                                         <i class='far'>&#xf15c;</i>
                                         <br />
@@ -66,13 +66,13 @@
                                         <br />
                                         Research Papers
                                     </li>
-                                    <li (click)="openAchievement()" class="btn btn-squared-default-plain btn-success">
+                                    <li (click)="openAchievement()" class="btn btn-squared-default-plain btn-dark">
                                         <i class='fas'>&#xf091;</i>
                                         <br />
                                         <br />
                                         Achievements
                                     </li>
-                                    <li (click)="openSkill()" class="btn btn-squared-default-plain btn-primary">
+                                    <li (click)="openSkill()" class="btn btn-squared-default-plain btn-dark">
                                         <i class="fa fa-android fa-5x"></i>
                                         <br />
                                         <br />
@@ -84,14 +84,14 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <p>
-                                    <li (click)="openCourse()" class="btn btn-squared-default-plain btn-primary">
+                                    <li (click)="openCourse()" class="btn btn-squared-default-plain btn-dark">
                                         <i class='fas'>&#xf501;</i>
                                         <br />
                                        
                                         <br />
                                       Courses
                                     </li>
-                                    <li (click)="openExtraCurricular()" class="btn btn-squared-default-plain btn-success">
+                                    <li (click)="openExtraCurricular()" class="btn btn-squared-default-plain btn-dark">
                                         <i class='fas'>&#xf1e3;</i>
                                         <br />
                                         <br />
@@ -99,27 +99,31 @@
                                         <br />
                                         Activites
                                     </li>
-                                    <li (click)="openTraining()" class="btn btn-squared-default-plain btn-warning">
+                                    <li (click)="openTraining()" class="btn btn-squared-default-plain btn-dark">
                                         <i class='fas'>&#xf51c;</i>
                                         <br />
                                      <br />
                                      Trainings
                                     </li>
-                                    <li (click)="openDownloadPDF()" class="btn btn-squared-default-plain btn-danger">
+                                    <!-- <li (click)="openDownloadPDF()" class="btn btn-squared-default-plain btn-dark">
                                         <i class="glyphicon">&#xe025;</i>
                                         <br />
                                         <br />
                                         Download 
                                      <br />
                                      PDF
-                                    </li>
+                                    </li> -->
                                 </p>
                             </div>
                     </div>
                 </div>
         </div>
-
+        <div style="display: block; align-content: center">
+                <button mat-button id="downloadButton" (click)="openDownloadPDF()">Download Resume<i class="glyphicon downloadIcon">&#xe025;</i></button>
+                <button mat-button id="downloadButton" (click)="openDownloadPDF()">Preview Resume<i class="glyphicon downloadIcon">&#xe025;</i></button>
+        </div>
     </div>
+   
 </div>
 
 

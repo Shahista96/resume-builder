@@ -1,10 +1,52 @@
-<div *ngIf="user">
-    <div>
-        <h4>{{ user.name }}</h4>
-        <p>{{ user.email }}</p>
-      </div>    
+<script src="https://apis.google.com/js/api.js"></script>
+
+<div id="fullScreen" [ngStyle]="test ? {backgroundImage:'url(.././assets/images/Background1.jpg)'} : {backgroundImage:'url(.././assets/images/office_with_cup.jpg)'}"> 
+    <div id="loginCard">
+        <label id="login" style="align-content: center" title="Login"> Resume Builder </label>
+            <mat-card> 
+                    <mat-card-header>
+                      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                      <mat-card-title>Login</mat-card-title>
+                      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                    </mat-card-header>
+                    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+                    <mat-card-content>
+                            <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" name="qualification" required>
+                                  </div>
+                                  <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" name="password" required>
+                                      </div>
+                    </mat-card-content>
+                    <mat-card-actions style="display: flex; justify-content: center">
+                            <button mat-button class="loginButton">LOGIN</button>
+                            <button mat-button class="loginButton">SIGN IN</button>
+                            <button mat-button class="loginButton" (click)="signIn
+                            ()">Google Sign IN</button>
+                    </mat-card-actions>
+                    <!-- <div style="justify-content: center; display: block;">
+                      <button mat-button class="loginButton">LOGIN</button>
+                      <button mat-button class="loginButton">SIGN IN</button>
+                    </div> -->
+                  </mat-card>
+    </div>
 </div>
 
-<button (click)="signInWithFB()">FB</button>
+<!-- <mat-card-actions style="display: flex; justify-content: center"> -->
 
-<button (click)="signInWithGoogle()">Google</button>
+<!-- 
+<div style="position: relative; z-index: 1;">
+    <img src=".././assets/images/educationEditted.png" style="position: absolute; z-index: 2;" />
+    <span id="overlay_text" style="position: relative; top: -10px; z-index: 3;">OVERLAY</span>
+  </div> -->
+
+<!-- <img src=".././assets/images/yellow_bg.jpg" style="width: 100%; height: 100%"> -->
+
+<!-- <img src=".././assets/images/office_with_cup.jpg" style="width: 100%; height: 100%"> -->
+ 
+<!-- <img src=".././assets/images/books.jpg" style="width: 100%; height: 100%"> -->
+ <!-- <img src=".././assets/images/educationEditted.png" style="width: 100%; height: 100%"> -->
+    <!-- <img src=".././assets/images/MyDesign5.PNG" style="width: 70%;"> -->
+    <!-- <div class="diamond"></div> -->

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
-import { SocialUser } from "angularx-social-login";
+import { AuthenticatorService } from 'src/app/authenticator.service';
 
 @Component({
   selector: 'app-login',
@@ -10,27 +8,54 @@ import { SocialUser } from "angularx-social-login";
 })
 export class LoginComponent implements OnInit {
 
-  user: SocialUser;
-  loggedIn: boolean;
+ test = true;
+ imageSrc1 = '.././assets/images/Background1.jpg';
  
-  constructor(private authService: SocialAuthService) { }
+//   constructor() { }
  
-  ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
+//   ngOnInit() {
+//     while(true){
+//       setTimeout(function(){
+//       this.test = !this.test;
+//       }, 5000);
+//     }
+    
+//   }
+
+// login(){
+//   gapi.load('auth2', function(){
+//     gapi.auth2.init();
+//   })
+// } 
+
+public authIsLoaded: boolean = false;
+public isLoggedIn: boolean = false;
+public user;
+
+constructor(private authenticatorService: AuthenticatorService) { }
+
+    signIn(): void {
+    this.authenticatorService.signIn();
+    };
+
+    signOut(): void {
+    this.authenticatorService.signOut();
+    }
+
+    ngOnInit() {
+    this.authenticatorService.isLoaded$.subscribe( value => {
+        this.authIsLoaded = value;
     });
-  }
+
+    this.authenticatorService.isLoggedIn$.subscribe( value => {
+        this.isLoggedIn = value;
+    });
+
+    this.authenticatorService.user$.subscribe( value => {
+        this.user = value;
+    });
+
+    this.authenticatorService.loadAuth2();
+    }
  
-  signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
- 
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
- 
-  signOut(): void {
-    this.authService.signOut();
-  }
 }

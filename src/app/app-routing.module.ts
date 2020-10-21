@@ -6,10 +6,11 @@ import { PDFComponent } from './components/pdf/pdf.component';
 
 
 const routes: Routes = [
-  {path: 'home', component: Homev2Component},
-  {path: 'selectTemplates', component: TemplatesComponent},
-  {path: 'downloadResume', component: PDFComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'}
+  {path: 'home', component: TemplatesComponent},
+  {path: '', pathMatch:'full', component: Homev2Component},
+ 
+  // {path: 'downloadResume', component: PDFComponent},
+  // {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -39,6 +39,6 @@ export const TEMPLATES: Template[] = [
     {
         templateId: 7,
         templateURL: '.././assets/images/SampleResume1.JPG',
-        selected: true
+        selected: false
     }
 ]

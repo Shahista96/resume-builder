@@ -1,13 +1,56 @@
-<div style=" display: inline;">
+<div style="display: inline; margin: 30px !important; padding: 30px !important">
   <div style="width: 55%; float: left">
     <div class="row">
       <div class="col-lg-12">
-        <img *ngFor="let template of this.templates" mat-card-image src="{{template.templateURL}}" class="btn btn-squared-default-plain"
-          [class]="template.selected ? 'selected':'none'" (click)="toggleSelection(template)" [title]="template.selected ? 'Click to Deselect Template':'Click to Select Template'">
+        <p class="h4"> Select Template (You many select any number of templates)</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div *ngFor="let template of this.templates" style="float:left" class="card-container">
+
+
+          <img mat-card-image src="{{template.templateURL}}" class="btn btn-squared-default-plain" (click)="toggleSelection(template)"
+            [title]="template.selected ? 'Click to Deselect Template':'Click to Select Template'">
+          <!-- <div class="hoverText" *ngIf="!template.selected">
+            <div class="caption">
+              <span class="material-icons" aria-hidden="true">
+                done
+              </span>
+            </div>
+          </div>
+          <div class="hoverText" *ngIf="template.selected">
+              <div class="caption">
+                <span class="material-icons" aria-hidden="true">
+                  close
+                </span>
+              </div>
+            </div> -->
+          <div class="hoverText2">
+            <div class="caption">
+              <span class="material-icons icons" *ngIf="template.selected">
+                done
+              </span>
+            </div>
+          </div>
+          
+
+        </div>
+
       </div>
     </div>
   </div>
+
   <div style="width: 45%;float: left">
     <img mat-card-image src="{{previewImage.templateURL}}" class="btn preview-image" title="Template Preview">
+  </div>
 </div>
-</div>
+
+
+<!-- <div class="hoverText">
+    <div class="caption">
+      <span class="material-icons" aria-hidden="true">
+        done
+      </span>
+    </div>
+  </div> -->
